@@ -1,0 +1,46 @@
+﻿@model AdministracionUniversitaria.Models.Alumno
+
+@{
+    ViewBag.Title = "AlumnoDetail";
+}
+
+<div class="container mb-4">
+    <a href="@Url.Action("AlumnosPage", "Alumno")" class="btn btn-outline-info">Volver a la lista de Alumnos</a>
+</div>
+
+<h2>AlumnoDetail</h2>
+
+@using (Html.BeginForm("UpdateAlumno", "Alumno", new { IdAlumno = Model.IdAlumno }, FormMethod.Post))
+{
+    <div class="container mt-5">
+
+
+        <div class="form-group">
+            @Html.LabelFor(x => x.Alumno_Nombre)
+            @Html.TextBoxFor(x => x.Alumno_Nombre, new { @class = "form-control", @id = "txtAlumnoNombre", @type = "text" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(x => x.Alumno_Edad)
+            @Html.TextBoxFor(x => x.Alumno_Edad, new { @class = "form-control", @id = "txtAlumnoEdad", @type = "number", @readonly = "readonly" })
+        </div>
+
+    </div>
+
+    <div class="container mt-3">
+
+        <button type="submit" class="btn btn-primary">Actualizar Alumno</button>
+
+    </div>
+}
+
+@using (Html.BeginForm("DeleteAlumno", "Alumno", new { IdAlumno = Model.IdAlumno }, FormMethod.Post))
+{
+    <div class="container mt-5">
+
+        <button type="submit" class="btn btn-danger">Borrar Alumno</button>
+
+    </div>
+}
+
+

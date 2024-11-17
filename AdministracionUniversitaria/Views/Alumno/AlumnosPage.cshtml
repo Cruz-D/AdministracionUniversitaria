@@ -1,0 +1,62 @@
+﻿@using AdministracionUniversitaria.ViewModels
+@model AlumnoViewModel
+@{
+    ViewBag.Title = "AlumnosPage";
+}
+
+<h2>Alumnos</h2>
+
+<div class="container mt-5 ">
+
+    <p>Agregar un alumno:</p>
+
+    <a href="@Url.Action("CreateAlumno", "Alumno")" class="btn btn-primary">Añadir un Alumno</a>
+
+</div>
+
+
+<div class="container mt-5">
+
+    <div class="text-center bg-black">
+
+        <h3 class="text-bg-light">Alumnos</h3>
+
+    </div>
+
+    <table class="table table-striped table-bordered">
+
+        <thead class="thead-dark">
+
+            <tr>
+                <th></th>
+
+                <th>Nombre</th>
+
+                <th>Edad</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            @foreach (var alumno in Model.Alumnos)
+
+            {
+                <tr>
+                    <td> <a href="@Url.Action("AlumnoDetail", "Alumno", new { IdAlumno = alumno.Id })" class="btn btn-primary" id="btnEditar">Editar</a> </td>
+
+                    <td>@alumno.Nombre</td>
+
+                    <td>@alumno.Edad</td>
+
+                </tr>
+            }
+
+        </tbody>
+
+    </table>
+
+</div>
+
+

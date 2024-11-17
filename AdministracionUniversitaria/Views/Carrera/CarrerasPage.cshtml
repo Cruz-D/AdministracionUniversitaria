@@ -1,0 +1,55 @@
+﻿@using AdministracionUniversitaria.ViewModels
+@model CarreraViewModel
+@{
+    ViewBag.Title = "CarrerasPage";
+}
+
+<h2>CarrerasPage</h2>
+
+<div class="container mt-5">
+
+    <div class="text-center bg-black">
+
+        <h3 class="text-bg-light">Carreras</h3>
+
+    </div>
+
+</div>
+
+@* Tabla de contenido *@
+<div class="container mt-5">
+
+    <table class="table table-striped table-bordered">
+
+        <thead class="thead-dark">
+
+            <tr>
+
+                <th>Nombre</th>
+
+                
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            @foreach (var carrera in Model.Carreras)
+
+            {
+
+                <tr>
+
+                    <td>@carrera.Carrera_Nombre</td>
+
+                </tr>
+
+            }
+
+        </tbody>
+
+    </table>
+
+</div>
+    

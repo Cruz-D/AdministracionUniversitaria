@@ -1,0 +1,24 @@
+﻿@model AdministracionUniversitaria.Models.Alumno
+
+@{
+    ViewBag.Title = "CreateAlumno";
+}
+
+<h2>CreateAlumno</h2>
+
+@using (Html.BeginForm("CreateAlumno", "Alumno", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.LabelFor(x => x.Alumno_Nombre)
+        @Html.TextBoxFor(x => x.Alumno_Nombre, new { @class = "form-control", @id = "txtAlumnoNombre", @type = "text" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.Alumno_Edad)
+        @Html.TextBoxFor(x => x.Alumno_Edad, new { @class = "form-control", @id = "txtAlumnoEdad", @type = "number" })
+    </div>
+
+    <div class="form-group mt-4">
+        <button type="submit" class="btn btn-primary">Crear Alumno</button>
+    </div>
+}
