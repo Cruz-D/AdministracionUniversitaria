@@ -27,11 +27,15 @@ namespace AdministracionUniversitaria.Context
             // Crear datos de prueba para Carreras
             var carreras = new List<Carrera>
             {
-                new Carrera { Carrera_Nombre = "Ingeniería Informática" },
-                new Carrera { Carrera_Nombre = "Medicina" },
-                new Carrera { Carrera_Nombre = "Derecho" },
-                new Carrera { Carrera_Nombre = "Arquitectura" },
-                new Carrera { Carrera_Nombre = "Economía" }
+                new Carrera { Carrera_Nombre = "Ingeniería Informática", Carrera_Duracion = "5 años", Carrera_Titulo = "Ingeniero Informático", Carrera_Codigo = "INF001", Carrera_Tipo = "Licenciatura", Carrera_Modalidad = "Presencial", Carrera_Coste = 50000, Carrera_NumeroAsignaturas = 40 },
+                new Carrera { Carrera_Nombre = "Medicina", Carrera_Duracion = "6 años", Carrera_Titulo = "Médico Cirujano", Carrera_Codigo = "MED001", Carrera_Tipo = "Licenciatura", Carrera_Modalidad = "Presencial", Carrera_Coste = 60000, Carrera_NumeroAsignaturas = 50 },
+                new Carrera { Carrera_Nombre = "Derecho", Carrera_Duracion = "5 años", Carrera_Titulo = "Abogado", Carrera_Codigo = "DER001", Carrera_Tipo = "Licenciatura", Carrera_Modalidad = "Presencial", Carrera_Coste = 40000, Carrera_NumeroAsignaturas = 35 },
+                new Carrera { Carrera_Nombre = "Arquitectura", Carrera_Duracion = "5 años", Carrera_Titulo = "Arquitecto", Carrera_Codigo = "ARQ001", Carrera_Tipo = "Licenciatura", Carrera_Modalidad = "Presencial", Carrera_Coste = 55000, Carrera_NumeroAsignaturas = 45 },
+                new Carrera { Carrera_Nombre = "Economía", Carrera_Duracion = "4 años", Carrera_Titulo = "Economista", Carrera_Codigo = "ECO001", Carrera_Tipo = "Licenciatura", Carrera_Modalidad = "Presencial", Carrera_Coste = 45000, Carrera_NumeroAsignaturas = 30 },
+                new Carrera { Carrera_Nombre = "Ingeniería Civil", Carrera_Duracion = "5 años", Carrera_Titulo = "Ingeniero Civil", Carrera_Codigo = "CIV001", Carrera_Tipo = "Licenciatura", Carrera_Modalidad = "Presencial", Carrera_Coste = 50000, Carrera_NumeroAsignaturas = 40 },
+                new Carrera { Carrera_Nombre = "Psicología", Carrera_Duracion = "4 años", Carrera_Titulo = "Psicólogo", Carrera_Codigo = "PSI001", Carrera_Tipo = "Licenciatura", Carrera_Modalidad = "Presencial", Carrera_Coste = 40000, Carrera_NumeroAsignaturas = 30 },
+                new Carrera { Carrera_Nombre = "Ingeniería Electrónica", Carrera_Duracion = "5 años", Carrera_Titulo = "Ingeniero Electrónico", Carrera_Codigo = "ELE001", Carrera_Tipo = "Licenciatura", Carrera_Modalidad = "Presencial", Carrera_Coste = 50000, Carrera_NumeroAsignaturas = 40 },
+                new Carrera { Carrera_Nombre = "Administración de Empresas", Carrera_Duracion = "4 años", Carrera_Titulo = "Administrador de Empresas", Carrera_Codigo = "ADM001", Carrera_Tipo = "Licenciatura", Carrera_Modalidad = "Presencial", Carrera_Coste = 45000, Carrera_NumeroAsignaturas = 30 }
             };
             carreras.ForEach(c => context.Carrera_Set.Add(c));
             context.SaveChanges();

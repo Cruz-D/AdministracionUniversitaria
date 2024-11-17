@@ -6,6 +6,14 @@
 
 <h2>CarrerasPage</h2>
 
+<div class="container mt-5 ">
+
+    <p>Agregar un alumno:</p>
+
+    <a href="@Url.Action("CreateCarrera", "Carrera")" class="btn btn-primary">Añadir una Carrera</a>
+
+</div>
+
 <div class="container mt-5">
 
     <div class="text-center bg-black">
@@ -24,11 +32,15 @@
         <thead class="thead-dark">
 
             <tr>
-
+                <th></th>
                 <th>Nombre</th>
-
-                
-
+                <th>Duración</th>
+                <th>Título</th>
+                <th>Código</th>
+                <th>Tipo</th>
+                <th>Modalidad</th>
+                <th>Coste</th>
+                <th>Número de Asignaturas</th>
             </tr>
 
         </thead>
@@ -40,9 +52,29 @@
             {
 
                 <tr>
-
+                    <td>
+                        <table>
+                            <tr>
+                                <td>
+                                   <a href="@Url.Action("CarreraDetail", "Carrera", new { IdCarrera = carrera.Carrera_IdCarrera })" class="btn btn-primary" id="btnEditar">Editar</a>
+                                </td>
+                                <td>
+                                    @using (Html.BeginForm("DeleteCarrera", "Carrera", new { IdCarrera = carrera.Carrera_IdCarrera }, FormMethod.Post))
+                                    {
+                                        <button type="submit" class="btn btn-danger">Borrar</button>
+                                    }
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
                     <td>@carrera.Carrera_Nombre</td>
-
+                    <td>@carrera.Carrera_Duracion</td>
+                    <td>@carrera.Carrera_Titulo</td>
+                    <td>@carrera.Carrera_Codigo</td>
+                    <td>@carrera.Carrera_Tipo</td>
+                    <td>@carrera.Carrera_Modalidad</td>
+                    <td>@carrera.Carrera_Coste</td>
+                    <td>@carrera.Carrera_NumeroAsignaturas</td>
                 </tr>
 
             }

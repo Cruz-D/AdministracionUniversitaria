@@ -27,7 +27,14 @@ namespace AdministracionUniversitaria.Controllers
                 .Select(c => new
                 {
                     id_carrera = c.IdCarrera,
-                    Nombre = c.Carrera_Nombre
+                    Nombre = c.Carrera_Nombre,
+                    Duracion = c.Carrera_Duracion,
+                    Titulo = c.Carrera_Titulo,
+                    Codigo = c.Carrera_Codigo,
+                    Tipo = c.Carrera_Tipo,
+                    Modalidad = c.Carrera_Modalidad,
+                    Coste = c.Carrera_Coste,
+                    NumeroAsignaturas = c.Asignaturas.Count
                 }).ToList();
 
             //crear un objeto de la clase viewmodel
@@ -38,58 +45,44 @@ namespace AdministracionUniversitaria.Controllers
                 vm.Carreras = carreras.Select(c => new CarreraViewModel
                 {
                     Carrera_IdCarrera = c.id_carrera,
-                    Carrera_Nombre = c.Nombre
+                    Carrera_Nombre = c.Nombre,
+                    Carrera_Duracion = c.Duracion,
+                    Carrera_Titulo = c.Titulo,
+                    Carrera_Codigo = c.Codigo,
+                    Carrera_Tipo = c.Tipo,
+                    Carrera_Modalidad = c.Modalidad,
+                    Carrera_Coste = c.Coste,
+                    Carrera_NumeroAsignaturas = c.NumeroAsignaturas
                 }).ToList();
             };
 
             return View(vm);
         }
 
-        //GET: Obtener una carrera por su id y mostrar datos
-        //metodo para obtener una carrera por su id
+        
         [HttpGet]
-        public JsonResult GetCarrera(int idCarrera)
+        public ActionResult CreateCarrera()
         {
-            //seleccionar la carrera por su id
-            var carrera = db.Carrera_Set.Find(idCarrera);
-
-            //crear un objeto de la clase viewmodel
-            var vm = new CarreraViewModel
-            {
-                //llenar los datos de la carrera
-                Carrera_IdCarrera = carrera.IdCarrera,
-                Carrera_Nombre = carrera.Carrera_Nombre
-            };
-
-            return Json(vm, JsonRequestBehavior.AllowGet);
+            return View();
         }
-
-        // GET: Mostrar asignaturas de una carrera
-        //metodo para mostrar las asignaturas de una carrera
-        //[HttpGet]
-        //public JsonResult GetAsignaturasCarrera(int idCarrera)
-        //{
-        //    //obtener las asignaturas de una carrera
-        //    var asignaturas = db.Asignatura_Set
-        //        .Where(a => a.IdCarrera == idCarrera)
-        //        .Select(a => new
-        //        {
-        //            id_asignatura = a.Asignatura_IdAsignatura,
-        //            Nombre = a.Asignatura_Nombre
-        //        }).ToList();
-
-        //    return Json(asignaturas, JsonRequestBehavior.AllowGet);
-        //}
 
         //POST: Crear una nueva carrera
         //metodo para crear una nueva carrera
         [HttpPost]
-        public ActionResult CrearCarrera(CarreraViewModel vm)
+        public ActionResult CreateCarrera(CarreraViewModel vm)
         {
             //crear un objeto de la clase carrera
             var carrera = new Carrera
             {
-                Carrera_Nombre = vm.Carrera_Nombre
+                Carrera_Nombre = vm.Carrera_Nombre,
+                Carrera_Duracion = vm.Carrera_Duracion,
+                Carrera_Titulo = vm.Carrera_Titulo,
+                Carrera_Codigo = vm.Carrera_Codigo,
+                Carrera_Tipo = vm.Carrera_Tipo,
+                Carrera_Modalidad = vm.Carrera_Modalidad,
+                Carrera_Coste = vm.Carrera_Coste,
+                Carrera_NumeroAsignaturas = vm.Carrera_NumeroAsignaturas
+
             };
 
             //agregar la carrera a la base de datos
@@ -100,10 +93,63 @@ namespace AdministracionUniversitaria.Controllers
             return RedirectToAction("CarrerasPage");
         }
 
+        //GET: Obtener una carrera por su id y mostrar datos
+        //metodo para obtener una carrera por su id
+        [HttpGet]
+        public ActionResult CarreraDetail(int IdCarrera)
+        {
+            //seleccionar la carrera por su id
+            var carrera = db.Carrera_Set.Find(IdCarrera);
+
+            //crear un objeto de la clase viewmodel
+            var model = new CarreraViewModel
+            {
+                Carrera_IdCarrera = carrera.IdCarrera,
+                Carrera_Nombre = carrera.Carrera_Nombre,
+                Carrera_Duracion = carrera.Carrera_Duracion,
+                Carrera_Titulo = carrera.Carrera_Titulo,
+                Carrera_Codigo = carrera.Carrera_Codigo,
+                Carrera_Tipo = carrera.Carrera_Tipo,
+                Carrera_Modalidad = carrera.Carrera_Modalidad,
+                Carrera_Coste = carrera.Carrera_Coste,
+                Carrera_NumeroAsignaturas = carrera.Carrera_NumeroAsignaturas
+            };
+
+            //retornar la vista con los datos de la carrera
+            return View(model);
+       
+        }
+
+        //PUT: Actualizar una carrera
+        //metodo para actualizar una carrera
+        [HttpPost]
+        public ActionResult UpdateCarrera(CarreraViewModel vm, int IdCarrera)
+        {
+            
+                // Obtener la carrera por su id
+                var carrera = db.Carrera_Set.Find(IdCarrera);
+
+                // Actualizar los datos de la carrera
+                carrera.Carrera_Nombre = vm.Carrera_Nombre;
+                carrera.Carrera_Duracion = vm.Carrera_Duracion;
+                carrera.Carrera_Titulo = vm.Carrera_Titulo;
+                carrera.Carrera_Codigo = vm.Carrera_Codigo;
+                carrera.Carrera_Tipo = vm.Carrera_Tipo;
+                carrera.Carrera_Modalidad = vm.Carrera_Modalidad;
+                carrera.Carrera_Coste = vm.Carrera_Coste;
+                carrera.Carrera_NumeroAsignaturas = vm.Carrera_NumeroAsignaturas;
+
+                // Guardar los cambios en la base de datos
+                db.SaveChanges();
+
+                return RedirectToAction("CarrerasPage");
+            
+        }
+
         //DELETE: Eliminar una carrera
         //metodo para eliminar una carrera
-        [HttpDelete]
-        public ActionResult EliminarCarrera(int idCarrera)
+        [HttpPost]
+        public ActionResult DeleteCarrera(int idCarrera)
         {
             //seleccionar la carrera por el id
             var carrera = db.Carrera_Set.Find(idCarrera);

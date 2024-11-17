@@ -207,6 +207,8 @@
     <Content Include="Views\Alumno\CreateAlumno.cshtml" />
     <Content Include="Views\Alumno\AlumnoDetail.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Carrera\CarreraDetail.cshtml" />
+    <Content Include="Views\Carrera\CreateCarrera.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

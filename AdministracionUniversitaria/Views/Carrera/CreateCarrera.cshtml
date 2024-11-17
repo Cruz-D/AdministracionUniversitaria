@@ -1,0 +1,60 @@
+﻿@model AdministracionUniversitaria.ViewModels.CarreraViewModel
+
+@{
+    ViewBag.Title = "CreateCarrera";
+}
+
+<h2 class="text-center">Crear Carrera</h2>
+
+@using (Html.BeginForm("CreateCarrera", "Carrera", FormMethod.Post))
+{
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Carrera_Nombre, "Nombre", new { @class = "form-label" })
+                    @Html.TextBoxFor(m => m.Carrera_Nombre, new { @class = "form-control", @id = "txtCarreraNombre", @type = "text" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Carrera_Duracion, "Duración", new { @class = "form-label" })
+                    @Html.TextBoxFor(m => m.Carrera_Duracion, new { @class = "form-control", @id = "txtCarreraDuracion", @type = "text" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Carrera_Titulo, "Título", new { @class = "form-label" })
+                    @Html.TextBoxFor(m => m.Carrera_Titulo, new { @class = "form-control", @id = "txtCarreraTitulo", @type = "text" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Carrera_Codigo, "Código", new { @class = "form-label" })
+                    @Html.TextBoxFor(m => m.Carrera_Codigo, new { @class = "form-control", @id = "txtCarreraCodigo", @type = "text" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Carrera_Tipo, "Tipo", new { @class = "form-label" })
+                    @Html.TextBoxFor(m => m.Carrera_Tipo, new { @class = "form-control", @id = "txtCarreraTipo", @type = "text" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Carrera_Modalidad, "Modalidad", new { @class = "form-label" })
+                    @Html.TextBoxFor(m => m.Carrera_Modalidad, new { @class = "form-control", @id = "txtCarreraModalidad", @type = "text" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Carrera_Coste, "Coste", new { @class = "form-label" })
+                    @Html.TextBoxFor(m => m.Carrera_Coste, new { @class = "form-control", @id = "txtCarreraCoste", @type = "number" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Carrera_NumeroAsignaturas, "Número de Asignaturas", new { @class = "form-label" })
+                    @Html.TextBoxFor(m => m.Carrera_NumeroAsignaturas, new { @class = "form-control", @id = "txtCarreraNumeroAsignaturas", @type = "number" })
+                </div>
+
+                <div class="text-center mt-4">
+                    <button type="submit" class="btn btn-primary">Crear Carrera</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}

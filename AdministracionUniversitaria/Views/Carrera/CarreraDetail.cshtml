@@ -1,0 +1,79 @@
+﻿@model AdministracionUniversitaria.ViewModels.CarreraViewModel
+@{
+    ViewBag.Title = "UpdateCarrera";
+}
+
+<h2>Actualizar Carrera</h2>
+
+<div class="container mt-5">
+    <div class="text-center bg-black">
+        <h3 class="text-bg-light">Actualizar Carrera</h3>
+    </div>
+
+    @using (Html.BeginForm("UpdateCarrera", "Carrera",new { IdCarrera = Model.Carrera_IdCarrera }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.HiddenFor(model => model.Carrera_IdCarrera)
+
+        <div class="form-group mt-3">
+            @Html.LabelFor(model => model.Carrera_Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Carrera_Nombre, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group mt-3">
+            @Html.LabelFor(model => model.Carrera_Duracion, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Carrera_Duracion, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group mt-3">
+            @Html.LabelFor(model => model.Carrera_Titulo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Carrera_Titulo, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group mt-3">
+            @Html.LabelFor(model => model.Carrera_Codigo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Carrera_Codigo, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group mt-3">
+            @Html.LabelFor(model => model.Carrera_Tipo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Carrera_Tipo, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group mt-3">
+            @Html.LabelFor(model => model.Carrera_Modalidad, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Carrera_Modalidad, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group mt-3">
+            @Html.LabelFor(model => model.Carrera_Coste, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Carrera_Coste, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group mt-3">
+            @Html.LabelFor(model => model.Carrera_NumeroAsignaturas, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Carrera_NumeroAsignaturas, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group mt-3">
+            <div class="col-md-offset-2 col-md-10">
+                <button type="submit" class="btn btn-primary">Actualizar</button>
+            </div>
+        </div>
+    }
+</div>
