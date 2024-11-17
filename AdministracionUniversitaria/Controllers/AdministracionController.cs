@@ -7,7 +7,7 @@ using System.Web.Security;
 
 namespace AdministracionUniversitaria.Controllers
 {
-    public class AccountController : Controller
+    public class AdministracionController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
@@ -29,12 +29,29 @@ namespace AdministracionUniversitaria.Controllers
 
                 if (admin != null)
                 {
-                    //Con forms authentication se crea una cookie de autenticación
-                    //que se almacena en el navegador del usuario
-                    FormsAuthentication.SetAuthCookie(admin.Administracion_Email, false);
+                    if (admin.Administracion_Tipo == "superAdmin")
+                    {
+                        //Con forms authentication se crea una cookie de autenticación
+                        //que se almacena en el navegador del usuario
+                        FormsAuthentication.SetAuthCookie(admin.Administracion_Email, false);
 
-                    // Redirige al usuario a la página de inicio
-                    return RedirectToAction("Index", "Home");
+                        //guardar el tipo de usuario en un session
+                        Session["TipoUsuario"] = admin.Administracion_Tipo;
+
+                        // Si el administrador es de tipo "admin", se redirige a la página de administrador
+                        return RedirectToAction("Index", "Home");
+                    }
+                    else
+                    {
+                        FormsAuthentication.SetAuthCookie(admin.Administracion_Email, false);
+                        // Si el administrador es de tipo "user", se redirige a la página de usuario
+
+                        //guardar el tipo de usuario en un session
+                        Session["TipoUsuario"] = admin.Administracion_Tipo;
+
+                        return RedirectToAction("Index", "Home");
+                    }
+
                 }
                 else
                 {
@@ -45,14 +62,18 @@ namespace AdministracionUniversitaria.Controllers
 
             return View(model);
         }
-
+        //post para cerrar la sesión
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Logout()
         {
             // Se cierra la sesión del usuario usando FormsAuthentication
-            // y se redirige a la página de inicio de sesión
             FormsAuthentication.SignOut();
+            // Se cierra la sesión del usuario
+            Session.Abandon();
+
             return RedirectToAction("Login", "Account");
         }
+
     }
 }

@@ -18,11 +18,24 @@
             </button>
             <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                 <ul class="navbar-nav flex-grow-1">
-                    <li>@Html.ActionLink("Inicio", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Inicio", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>                 
                     <li>@Html.ActionLink("Alumnos", "AlumnosPage", "Alumno", new { area = "" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("Matriculaciones", "MatriculacionesPage", "Matriculacion", new { area = "" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("Carreras", "CarrerasPage", "Carrera", new { area = "" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("Asignaturas", "AsignaturasPage", "Asignatura", new { area = "" }, new { @class = "nav-link" })</li>
+                </ul>
+                <ul class="navbar-nav">
+                    @if (Session["TipoUsuario"] != null)
+                    {
+                        <li>
+                            @using (Html.BeginForm("Logout", "Administracion", FormMethod.Post))
+                            {
+                                @Html.AntiForgeryToken() //Evitar ataques CSRF
+                                <button type="submit" class="btn btn-link text-white">Cerrar sesión</button>
+                            }
+
+                        </li>
+                    }
                 </ul>
             </div>
         </div>

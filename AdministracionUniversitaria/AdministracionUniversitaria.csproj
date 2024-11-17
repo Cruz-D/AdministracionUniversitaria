@@ -206,9 +206,10 @@
     <Content Include="Views\Asignatura\AsignaturasPage.cshtml" />
     <Content Include="Views\Alumno\CreateAlumno.cshtml" />
     <Content Include="Views\Alumno\AlumnoDetail.cshtml" />
-    <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Carrera\CarreraDetail.cshtml" />
     <Content Include="Views\Carrera\CreateCarrera.cshtml" />
+    <Content Include="Views\Administracion\Login.cshtml" />
+    <Content Include="Views\Administracion\Logout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

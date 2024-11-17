@@ -1,43 +1,48 @@
 ﻿@using AdministracionUniversitaria.ViewModels
 @model AsignaturaViewModel
+
 @{
     ViewBag.Title = "AsignaturasPage";
 }
 
-<h2>AsignaturasPage</h2>
+    <h2>AsignaturasPage</h2>
 
-<div class="container mt-5">
+    <div class="container mt-5">
 
-    <div class="text-center bg-black">
+        <div class="text-center bg-black">
 
-        <h3 class="text-bg-light">Asignaturas</h3>
+            <h3 class="text-bg-light">Asignaturas</h3>
 
-    </div>
+        </div>
 
-    <div>
-        <table class="table table-striped table-bordered">
-            <thead class="thead-dark">
-                <tr>
-                    <th>Nombre</th>
-                    <th>Créditos</th>
-                    <th>Carrera</th>
-                    
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var asignatura in Model.Asignaturas)
-                {
+        <div>
+            <table class="table table-striped table-bordered">
+                <thead class="thead-dark">
                     <tr>
-                        <td>@asignatura.Asignatura_Nombre</td>
-                        <td>@asignatura.Asignatura_Creditos</td>
-                        <td>@asignatura.Asignatura_Carrera_Nombre</td>
-                        
+                        <th>Nombre</th>
+                        <th>Créditos</th>
+                        <th>Código</th>
+                        <th>Tipo</th>
+                        <th>Curso</th>
+                        <th>Horario</th>
+                        <th>Carrera</th>
                     </tr>
-                }
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @foreach (var asignatura in Model.Asignaturas)
+                    {
+                        <tr>
+                            <td>@asignatura.Asignatura_Nombre</td>
+                            <td>@asignatura.Asignatura_Creditos</td>
+                            <td>@asignatura.Asignatura_Codigo</td>
+                            <td>@asignatura.Asignatura_Tipo</td>
+                            <td>@asignatura.Asignatura_Curso</td>
+                            <td>@asignatura.Asignatura_Horario</td>
+                            <td>@asignatura.Asignatura_Carrera_Nombre</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
     </div>
-
-
-</div>
-

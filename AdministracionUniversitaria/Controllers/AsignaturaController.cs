@@ -18,24 +18,23 @@ namespace AdministracionUniversitaria.Controllers
 
         public ActionResult AsignaturasPage()
         {
-  
             var asignaturas = db.Asignatura_Set
-            
-                .Select(a => new AsignaturaViewModel.AsignaturaInfo
+                .Select(a => new AsignaturaViewModel
                 {
-                    Asignatura = a.Asignatura_Nombre,
-                    Creditos = a.Asignatura_Creditos,
-                    Carrera = a.Carrera.Carrera_Nombre
+                    Asignatura_IdAsignatura = a.IdAsignatura,
+                    Asignatura_Nombre = a.Asignatura_Nombre,
+                    Asignatura_Creditos = a.Asignatura_Creditos,
+                    Asignatura_Codigo = a.Asignatura_Codigo,
+                    Asignatura_Tipo = a.Asignatura_Tipo,
+                    Asignatura_Curso = a.Asignatura_Curso,
+                    Asignatura_Horario = a.Asignatura_Horario,
+                    Asignatura_Carrera_Nombre = a.Carrera.Carrera_Nombre,
+                    IdCarrera = a.IdCarrera
                 }).ToList();
 
             var vm = new AsignaturaViewModel
             {
-                Asignaturas = asignaturas.Select(a => new AsignaturaViewModel
-                {
-                    Asignatura_Nombre = a.Asignatura,
-                    Asignatura_Creditos = a.Creditos,
-                    Asignatura_Carrera_Nombre = a.Carrera
-                }).ToList()
+                Asignaturas = asignaturas
             };
 
             return View(vm);

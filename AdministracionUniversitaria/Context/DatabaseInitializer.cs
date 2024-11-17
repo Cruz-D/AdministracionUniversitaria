@@ -43,14 +43,21 @@ namespace AdministracionUniversitaria.Context
             // Crear datos de prueba para Asignaturas
             var asignaturas = new List<Asignatura>
             {
-                new Asignatura { Asignatura_Nombre = "Matemáticas", Asignatura_Creditos = 5, IdCarrera = carreras[0].IdCarrera, Carrera = carreras[0] },
-                new Asignatura { Asignatura_Nombre = "Biología", Asignatura_Creditos = 4, IdCarrera = carreras[1].IdCarrera, Carrera = carreras[1] },
-                new Asignatura { Asignatura_Nombre = "Derecho Civil", Asignatura_Creditos = 6, IdCarrera = carreras[2].IdCarrera, Carrera = carreras[2] },
-                new Asignatura { Asignatura_Nombre = "Física", Asignatura_Creditos = 5, IdCarrera = carreras[0].IdCarrera, Carrera = carreras[0] },
-                new Asignatura { Asignatura_Nombre = "Química", Asignatura_Creditos = 4, IdCarrera = carreras[1].IdCarrera, Carrera = carreras[1] },
-                new Asignatura { Asignatura_Nombre = "Derecho Penal", Asignatura_Creditos = 6, IdCarrera = carreras[2].IdCarrera, Carrera = carreras[2] },
-                new Asignatura { Asignatura_Nombre = "Diseño Arquitectónico", Asignatura_Creditos = 5, IdCarrera = carreras[3].IdCarrera, Carrera = carreras[3] },
-                new Asignatura { Asignatura_Nombre = "Microeconomía", Asignatura_Creditos = 4, IdCarrera = carreras[4].IdCarrera, Carrera = carreras[4] }
+                new Asignatura { Asignatura_Nombre = "Matemáticas", Asignatura_Creditos = 5, Asignatura_Codigo = "MAT101", Asignatura_Tipo = "Obligatoria", Asignatura_Curso = "1er Año", Asignatura_Horario = "Lunes 8-10", IdCarrera = carreras[0].IdCarrera, Carrera = carreras[0] },
+                new Asignatura { Asignatura_Nombre = "Programación", Asignatura_Creditos = 4, Asignatura_Codigo = "PRO102", Asignatura_Tipo = "Obligatoria", Asignatura_Curso = "1er Año", Asignatura_Horario = "Martes 10-12", IdCarrera = carreras[0].IdCarrera, Carrera = carreras[0] },
+                new Asignatura { Asignatura_Nombre = "Algoritmos", Asignatura_Creditos = 3, Asignatura_Codigo = "ALG103", Asignatura_Tipo = "Obligatoria", Asignatura_Curso = "1er Año", Asignatura_Horario = "Miércoles 8-10", IdCarrera = carreras[0].IdCarrera, Carrera = carreras[0] },
+                new Asignatura { Asignatura_Nombre = "Biología", Asignatura_Creditos = 4, Asignatura_Codigo = "BIO101", Asignatura_Tipo = "Obligatoria", Asignatura_Curso = "1er Año", Asignatura_Horario = "Lunes 10-12", IdCarrera = carreras[1].IdCarrera, Carrera = carreras[1] },
+                new Asignatura { Asignatura_Nombre = "Anatomía", Asignatura_Creditos = 5, Asignatura_Codigo = "ANA102", Asignatura_Tipo = "Obligatoria", Asignatura_Curso = "1er Año", Asignatura_Horario = "Martes 8-10", IdCarrera = carreras[1].IdCarrera, Carrera = carreras[1] },
+                new Asignatura { Asignatura_Nombre = "Fisiología", Asignatura_Creditos = 4, Asignatura_Codigo = "FIS103", Asignatura_Tipo = "Obligatoria", Asignatura_Curso = "1er Año", Asignatura_Horario = "Miércoles 10-12", IdCarrera = carreras[1].IdCarrera, Carrera = carreras[1] },
+                new Asignatura { Asignatura_Nombre = "Derecho Civil", Asignatura_Creditos = 6, Asignatura_Codigo = "DER101", Asignatura_Tipo = "Obligatoria", Asignatura_Curso = "1er Año", Asignatura_Horario = "Lunes 8-10", IdCarrera = carreras[2].IdCarrera, Carrera = carreras[2] },
+                new Asignatura { Asignatura_Nombre = "Derecho Penal", Asignatura_Creditos = 6, Asignatura_Codigo = "DER102", Asignatura_Tipo = "Obligatoria", Asignatura_Curso = "1er Año", Asignatura_Horario = "Martes 10-12", IdCarrera = carreras[2].IdCarrera, Carrera = carreras[2] },
+                new Asignatura { Asignatura_Nombre = "Derecho Constitucional", Asignatura_Creditos = 5, Asignatura_Codigo = "DER103", Asignatura_Tipo = "Obligatoria", Asignatura_Curso = "1er Año", Asignatura_Horario = "Miércoles 8-10", IdCarrera = carreras[2].IdCarrera, Carrera = carreras[2] },
+                new Asignatura { Asignatura_Nombre = "Física", Asignatura_Creditos = 5, Asignatura_Codigo = "FIS101", Asignatura_Tipo = "Obligatoria", Asignatura_Curso = "1er Año", Asignatura_Horario = "Lunes 10-12", IdCarrera = carreras[3].IdCarrera, Carrera = carreras[3] },
+                new Asignatura { Asignatura_Nombre = "Diseño Arquitectónico", Asignatura_Creditos = 5, Asignatura_Codigo = "DIS102", Asignatura_Tipo = "Obligatoria", Asignatura_Curso = "1er Año", Asignatura_Horario = "Martes 8-10", IdCarrera = carreras[3].IdCarrera, Carrera = carreras[3] },
+                new Asignatura { Asignatura_Nombre = "Historia de la Arquitectura", Asignatura_Creditos = 4, Asignatura_Codigo = "HIS103", Asignatura_Tipo = "Obligatoria", Asignatura_Curso = "1er Año", Asignatura_Horario = "Miércoles 10-12", IdCarrera = carreras[3].IdCarrera, Carrera = carreras[3] },
+                new Asignatura { Asignatura_Nombre = "Microeconomía", Asignatura_Creditos = 4, Asignatura_Codigo = "MIC101", Asignatura_Tipo = "Obligatoria", Asignatura_Curso = "1er Año", Asignatura_Horario = "Lunes 8-10", IdCarrera = carreras[4].IdCarrera, Carrera = carreras[4] },
+                new Asignatura { Asignatura_Nombre = "Macroeconomía", Asignatura_Creditos = 4, Asignatura_Codigo = "MAC102", Asignatura_Tipo = "Obligatoria", Asignatura_Curso = "1er Año", Asignatura_Horario = "Martes 10-12", IdCarrera = carreras[4].IdCarrera, Carrera = carreras[4] },
+                new Asignatura { Asignatura_Nombre = "Economía Internacional", Asignatura_Creditos = 4, Asignatura_Codigo = "ECO103", Asignatura_Tipo = "Obligatoria", Asignatura_Curso = "1er Año", Asignatura_Horario = "Miércoles 8-10", IdCarrera = carreras[4].IdCarrera, Carrera = carreras[4] }
             };
             asignaturas.ForEach(a => context.Asignatura_Set.Add(a));
             context.SaveChanges();
