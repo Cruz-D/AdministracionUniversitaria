@@ -12,14 +12,14 @@ namespace AdministracionUniversitaria.Context
             // Crear datos de prueba para Alumnos
             var alumnos = new List<Alumno>
             {
-                new Alumno { Alumno_Nombre = "Juan Perez", Alumno_Edad = 20 },
-                new Alumno { Alumno_Nombre = "Maria Lopez", Alumno_Edad = 22 },
-                new Alumno { Alumno_Nombre = "Carlos Sanchez", Alumno_Edad = 23 },
-                new Alumno { Alumno_Nombre = "Ana Torres", Alumno_Edad = 21 },
-                new Alumno { Alumno_Nombre = "Luis Gomez", Alumno_Edad = 24 },
-                new Alumno { Alumno_Nombre = "Laura Martinez", Alumno_Edad = 19 },
-                new Alumno { Alumno_Nombre = "Pedro Fernandez", Alumno_Edad = 25 },
-                new Alumno { Alumno_Nombre = "Sofia Ramirez", Alumno_Edad = 22 }
+                new Alumno { Alumno_Nombre = "Juan", Alumno_Apellido = "Perez", Alumno_Edad = 20, Alumno_FechaNacimiento = new DateTime(2001, 5, 15), Alumno_Direccion = "Calle Falsa 123", Alumno_Telefono = "123456789", Alumno_Email = "juan.perez@example.com", Alumno_Foto = "juan.jpg" },
+                new Alumno { Alumno_Nombre = "Maria", Alumno_Apellido = "Lopez", Alumno_Edad = 22, Alumno_FechaNacimiento = new DateTime(1999, 8, 22), Alumno_Direccion = "Avenida Siempre Viva 456", Alumno_Telefono = "987654321", Alumno_Email = "maria.lopez@example.com", Alumno_Foto = "maria.jpg" },
+                new Alumno { Alumno_Nombre = "Carlos", Alumno_Apellido = "Sanchez", Alumno_Edad = 23, Alumno_FechaNacimiento = new DateTime(1998, 3, 10), Alumno_Direccion = "Calle Luna 789", Alumno_Telefono = "456123789", Alumno_Email = "carlos.sanchez@example.com", Alumno_Foto = "carlos.jpg" },
+                new Alumno { Alumno_Nombre = "Ana", Alumno_Apellido = "Torres", Alumno_Edad = 21, Alumno_FechaNacimiento = new DateTime(2000, 11, 30), Alumno_Direccion = "Calle Sol 321", Alumno_Telefono = "321654987", Alumno_Email = "ana.torres@example.com", Alumno_Foto = "ana.jpg" },
+                new Alumno { Alumno_Nombre = "Luis", Alumno_Apellido = "Gomez", Alumno_Edad = 24, Alumno_FechaNacimiento = new DateTime(1997, 7, 25), Alumno_Direccion = "Calle Estrella 654", Alumno_Telefono = "789321456", Alumno_Email = "luis.gomez@example.com", Alumno_Foto = "luis.jpg" },
+                new Alumno { Alumno_Nombre = "Laura", Alumno_Apellido = "Martinez", Alumno_Edad = 19, Alumno_FechaNacimiento = new DateTime(2002, 2, 14), Alumno_Direccion = "Calle Cometa 987", Alumno_Telefono = "654789321", Alumno_Email = "laura.martinez@example.com", Alumno_Foto = "laura.jpg" },
+                new Alumno { Alumno_Nombre = "Pedro", Alumno_Apellido = "Fernandez", Alumno_Edad = 25, Alumno_FechaNacimiento = new DateTime(1996, 9, 5), Alumno_Direccion = "Calle Planeta 159", Alumno_Telefono = "159753486", Alumno_Email = "pedro.fernandez@example.com", Alumno_Foto = "pedro.jpg" },
+                new Alumno { Alumno_Nombre = "Sofia", Alumno_Apellido = "Ramirez", Alumno_Edad = 22, Alumno_FechaNacimiento = new DateTime(1999, 12, 20), Alumno_Direccion = "Calle Galaxia 753", Alumno_Telefono = "753159486", Alumno_Email = "sofia.ramirez@example.com", Alumno_Foto = "sofia.jpg" }
             };
             alumnos.ForEach(a => context.Alumnos_Set.Add(a));
             context.SaveChanges();

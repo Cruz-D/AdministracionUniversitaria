@@ -25,7 +25,7 @@ namespace AdministracionUniversitaria.Controllers
                 .Select(a => new AlumnoViewModel.AlumnoInfo
                 {
                     Id = a.IdAlumno,
-                    Nombre = a.Alumno_Nombre,
+                    NombreCompleto = a.Alumno_Nombre,
                     Edad = a.Alumno_Edad
 
                 }).ToList();
@@ -38,7 +38,7 @@ namespace AdministracionUniversitaria.Controllers
                 vm.Alumnos = alumnos.Select(a => new AlumnoViewModel.AlumnoInfo
                 {
                     Id = a.Id,
-                    Nombre = a.Nombre,
+                    NombreCompleto = a.NombreCompleto,
                     Edad = a.Edad
 
                 }).ToList();

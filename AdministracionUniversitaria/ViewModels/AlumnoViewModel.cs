@@ -10,13 +10,20 @@ namespace AdministracionUniversitaria.ViewModels
         // Propiedades del alumno
         public int AlumnoId { get; set; }
         public string Alumno_Nombre { get; set; }
+        public string Alumno_Apellido { get; set; }
+        public string NombreCompleto { get; set; }
         public int Alumno_Edad { get; set; }
+        public DateTime Alumno_FechaNacimiento { get; set; }
+        public string Alumno_Direccion { get; set; }
+        public string Alumno_Telefono { get; set; }
+        public string Alumno_Email { get; set; }
+        public string Alumno_Foto { get; set; }
 
         // Clase auxiliar para mostrar información del alumno en la vista
         public class AlumnoInfo
         {
             public int Id { get; set; }
-            public string Nombre { get; set; }
+            public string NombreCompleto { get; set; }
             public int Edad { get; set; }
         }
 
@@ -28,6 +35,5 @@ namespace AdministracionUniversitaria.ViewModels
         {
             Alumnos = new List<AlumnoInfo>();
         }
-
     }
 }

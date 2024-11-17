@@ -8,39 +8,58 @@
     <a href="@Url.Action("AlumnosPage", "Alumno")" class="btn btn-outline-info">Volver a la lista de Alumnos</a>
 </div>
 
-<h2>AlumnoDetail</h2>
+<h2 class="text-center">Detalle del Alumno</h2>
+
+<div class="text-center mb-4">
+    <img src="@Url.Content(Model.Alumno_Foto)" alt="Foto del Alumno" class="rounded-circle" style="width: 150px; height: 150px;">
+</div>
 
 @using (Html.BeginForm("UpdateAlumno", "Alumno", new { IdAlumno = Model.IdAlumno }, FormMethod.Post))
 {
     <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="form-group">
+                    @Html.LabelFor(x => x.Alumno_Nombre, "Nombre", new { @class = "form-label" })
+                    @Html.TextBoxFor(x => x.Alumno_Nombre, new { @class = "form-control", @id = "txtAlumnoNombre", @type = "text" })
+                </div>
 
+                <div class="form-group">
+                    @Html.LabelFor(x => x.Alumno_Apellido, "Apellido", new { @class = "form-label" })
+                    @Html.TextBoxFor(x => x.Alumno_Apellido, new { @class = "form-control", @id = "txtAlumnoApellido", @type = "text" })
+                </div>
 
-        <div class="form-group">
-            @Html.LabelFor(x => x.Alumno_Nombre)
-            @Html.TextBoxFor(x => x.Alumno_Nombre, new { @class = "form-control", @id = "txtAlumnoNombre", @type = "text" })
+                <div class="form-group">
+                    @Html.LabelFor(x => x.Alumno_Edad, "Edad", new { @class = "form-label" })
+                    @Html.TextBoxFor(x => x.Alumno_Edad, new { @class = "form-control", @id = "txtAlumnoEdad", @type = "number" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(x => x.Alumno_FechaNacimiento, "Fecha de Nacimiento", new { @class = "form-label" })
+                    @Html.TextBoxFor(x => x.Alumno_FechaNacimiento, new { @class = "form-control", @id = "txtAlumnoFechaNacimiento", @type = "date" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(x => x.Alumno_Direccion, "Dirección", new { @class = "form-label" })
+                    @Html.TextBoxFor(x => x.Alumno_Direccion, new { @class = "form-control", @id = "txtAlumnoDireccion", @type = "text" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(x => x.Alumno_Email, "Email", new { @class = "form-label" })
+                    @Html.TextBoxFor(x => x.Alumno_Email, new { @class = "form-control", @id = "txtAlumnoEmail", @type = "email" })
+                </div>
+
+                <div class="text-center mt-4">
+                    <button type="submit" class="btn btn-primary">Actualizar Alumno</button>
+                </div>
+            </div>
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(x => x.Alumno_Edad)
-            @Html.TextBoxFor(x => x.Alumno_Edad, new { @class = "form-control", @id = "txtAlumnoEdad", @type = "number", @readonly = "readonly" })
-        </div>
-
-    </div>
-
-    <div class="container mt-3">
-
-        <button type="submit" class="btn btn-primary">Actualizar Alumno</button>
-
     </div>
 }
 
 @using (Html.BeginForm("DeleteAlumno", "Alumno", new { IdAlumno = Model.IdAlumno }, FormMethod.Post))
 {
-    <div class="container mt-5">
-
+    <div class="container mt-5 text-center">
         <button type="submit" class="btn btn-danger">Borrar Alumno</button>
-
     </div>
 }
-
-
