@@ -4,59 +4,103 @@
     ViewBag.Title = "AlumnosPage";
 }
 
-<h2>Alumnos</h2>
-
-<div class="container mt-5 ">
-
-    <p>Agregar un alumno:</p>
-
-    <a href="@Url.Action("CreateAlumno", "Alumno")" class="btn btn-primary">Añadir un Alumno</a>
-
-</div>
-
+<h2 class="text-center">Alumnos</h2>
 
 <div class="container mt-5">
-
-    <div class="text-center bg-black">
-
-        <h3 class="text-bg-light">Alumnos</h3>
-
+    
+    <div class="text-center mt-4">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createAlumnoModal">
+            Añadir un Alumno
+        </button>
     </div>
 
-    <table class="table table-striped table-bordered">
+    <!-- Modal -->
+    <div class="modal fade" id="createAlumnoModal" tabindex="-1" aria-labelledby="createAlumnoModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="createAlumnoModalLabel">Añadir un Alumno</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    @Html.Partial("CreateAlumno")
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
 
+<div class="table-responsive mt-4">
+    <table class="table table-striped table-bordered text-center align-middle">
         <thead class="thead-dark">
-
             <tr>
-                <th></th>
-
+                <th>Acciones</th>
                 <th>Nombre</th>
-
+                <th>Apellido</th>
                 <th>Edad</th>
-
+                <th>Fecha de Nacimiento</th>
+                <th>Dirección</th>
+                <th>Teléfono</th>
+                <th>Correo</th>
             </tr>
-
         </thead>
-
         <tbody>
-
             @foreach (var alumno in Model.Alumnos)
-
             {
                 <tr>
-                    <td> <a href="@Url.Action("AlumnoDetail", "Alumno", new { IdAlumno = alumno.Id })" class="btn btn-primary" id="btnEditar">Editar</a> </td>
-
-                    <td>@alumno.NombreCompleto</td>
-
+                    <td>
+                       
+                            <div class="d-flex justify-content-center gap-2">
+                                <button type="button" class="btn btn-primary btn-sm me-2" data-bs-toggle="modal" data-bs-target="#editAlumnoModal">Editar</button>
+                                @{
+                                    using (Html.BeginForm("DeleteAlumno", "Alumno", new { IdAlumno = alumno.Id }, FormMethod.Post))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        <button type="submit" class="btn btn-danger btn-sm">Borrar</button>
+                                    }
+                                }
+                            </div>
+                        
+                    </td>
+                    <td>@alumno.Nombre</td>
+                    <td>@alumno.Apellido</td>
                     <td>@alumno.Edad</td>
-
+                    <td>@alumno.FechaNacimiento</td>
+                    <td>@alumno.Direccion</td>
+                    <td>@alumno.Telefono</td>
+                    <td>@alumno.Email</td>
                 </tr>
+
+                <!-- Edit Modal -->
+                <div class="modal fade" id="editAlumnoModal" tabindex="-1" aria-labelledby="editAlumnoModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="editAlumnoModalLabel">Editar Alumno</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                @Html.Partial("AlumnoDetail", new AdministracionUniversitaria.ViewModels.AlumnoViewModel {
+
+                               AlumnoId = alumno.Id,
+                               Alumno_Nombre = alumno.Nombre,
+                               Alumno_Apellido = alumno.Apellido,
+                               Alumno_Edad = alumno.Edad,
+                               Alumno_FechaNacimiento = alumno.FechaNacimiento,
+                               Alumno_Direccion = alumno.Direccion,
+                               Alumno_Telefono = alumno.Telefono,
+                               Alumno_Email = alumno.Email,
+                               Alumno_Foto = alumno.Foto
+                           })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             }
-
         </tbody>
-
     </table>
-
 </div>
 
 

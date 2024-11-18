@@ -209,7 +209,10 @@
     <Content Include="Views\Carrera\CarreraDetail.cshtml" />
     <Content Include="Views\Carrera\CreateCarrera.cshtml" />
     <Content Include="Views\Administracion\Login.cshtml" />
-    <Content Include="Views\Administracion\Logout.cshtml" />
+    <Content Include="Views\Asignatura\CreateAsignatura.cshtml" />
+    <Content Include="Views\Asignatura\AsignaturaDetail.cshtml" />
+    <Content Include="Views\Matriculacion\CreateMatricula.cshtml" />
+    <Content Include="Views\Matriculacion\MatriculaDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

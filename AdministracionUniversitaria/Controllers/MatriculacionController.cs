@@ -92,9 +92,54 @@ namespace AdministracionUniversitaria.Controllers
             }
         }
 
+        //metoodo para acceder a una matrila por su id
+        [HttpGet]
+        public ActionResult MatriculaDetail(int idMatricula)
+        {
+            //seleccionar la matricula por su id
+            var matricula = db.Matricula_Set.Find(idMatricula);
+
+            //crear un objeto de la clase viewmodel
+            var vm = new MatriculaViewModel
+            {
+                //llenar los datos de la matricula
+                IdMatricula = matricula.IdMatricula,
+                IdAlumno = matricula.IdAlumno,
+                IdAsignaruta = matricula.IdAsignatura,
+                IdCarrera = matricula.Asignatura.Carrera.IdCarrera,
+
+                //llenar las listas de los dropdownlist
+
+                Alumnos = db.Alumnos_Set
+                    .Select(a => new SelectListItem
+                    {
+                        Value = a.IdAlumno.ToString(),
+                        Text = a.Alumno_Nombre
+                    }).ToList(),
+
+                Carreras = db.Carrera_Set
+                    .Select(c => new SelectListItem
+                    {
+                        Value = c.IdCarrera.ToString(),
+                        Text = c.Carrera_Nombre
+                    }).ToList(),
+
+                Asignaturas = db.Asignatura_Set
+                    .Where(a => a.Carrera.IdCarrera == matricula.Asignatura.Carrera.IdCarrera)
+                    .Select(a => new SelectListItem
+                    {
+                        Value = a.IdAsignatura.ToString(),
+                        Text = a.Asignatura_Nombre
+                    }).ToList()
+            };
+
+            //devolver la vista con el objeto viewmodel
+            return View(vm);
+        }
+
         //Metodo para guardar la matricula
         [HttpPost]
-        public ActionResult Matricular(MatriculaViewModel vm)
+        public ActionResult CreateMatricula(MatriculaViewModel vm)
         {
             //primero comprobar si el alumno esta matricualdo en la asignatura
             var matricula = db.Matricula_Set
@@ -131,6 +176,24 @@ namespace AdministracionUniversitaria.Controllers
 
                 return View("YaMatriculado");
             }
+        }
+
+        //metodo para actualizar una matricula
+        [HttpPost]
+        public ActionResult UpdateMatricula(MatriculaViewModel vm)
+        {
+            //seleccionar la matricula por el id
+            var matricula = db.Matricula_Set.Find(vm.IdMatricula);
+
+            //llenar los datos de la matricula
+            matricula.IdAlumno = vm.IdAlumno.Value;
+            matricula.IdAsignatura = vm.IdAsignaruta.Value;
+
+            //guardar los cambios en la base de datos
+            db.SaveChanges();
+
+            //redirigir a la vista de matriculacion
+            return RedirectToAction("MatriculacionesPage");
         }
 
         //DELETE: Eliminar una matricula

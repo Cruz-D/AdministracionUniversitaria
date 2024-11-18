@@ -1,79 +1,89 @@
 ﻿@model AdministracionUniversitaria.ViewModels.CarreraViewModel
+
 @{
-    ViewBag.Title = "UpdateCarrera";
+    ViewBag.Title = "Actualizar Carrera";
 }
 
-<h2>Actualizar Carrera</h2>
+<h2 class="text-center mb-4">Actualizar Carrera</h2>
+<div class="container d-flex justify-content-center">
+    <div class="row">
+        <div class="col-12">
+            @using (Html.BeginForm("UpdateCarrera", "Carrera", new { IdCarrera = Model.Carrera_IdCarrera }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(model => model.Carrera_IdCarrera)
 
-<div class="container mt-5">
-    <div class="text-center bg-black">
-        <h3 class="text-bg-light">Actualizar Carrera</h3>
+                <div class="row">
+                    <!-- Nombre -->
+                    <div class="form-group mb-4 col-6">
+                        @Html.LabelFor(model => model.Carrera_Nombre, "Nombre", new { @class = "form-label" })
+                        @Html.TextBoxFor(model => model.Carrera_Nombre, new { @class = "form-control", @id = "txtCarreraNombre", @type = "text", placeholder = "Escriba el nombre de la carrera" })
+                        @Html.ValidationMessageFor(model => model.Carrera_Nombre, "", new { @class = "text-danger" })
+                    </div>
+
+                    <!-- Duración -->
+                    <div class="form-group mb-4 col-6">
+                        @Html.LabelFor(model => model.Carrera_Duracion, "Duración", new { @class = "form-label" })
+                        @Html.TextBoxFor(model => model.Carrera_Duracion, new { @class = "form-control", @id = "txtCarreraDuracion", @type = "text", placeholder = "Duración de la carrera" })
+                        @Html.ValidationMessageFor(model => model.Carrera_Duracion, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="row">
+                    <!-- Título -->
+                    <div class="form-group mb-4 col-6">
+                        @Html.LabelFor(model => model.Carrera_Titulo, "Título", new { @class = "form-label" })
+                        @Html.TextBoxFor(model => model.Carrera_Titulo, new { @class = "form-control", @id = "txtCarreraTitulo", @type = "text", placeholder = "Título de la carrera" })
+                        @Html.ValidationMessageFor(model => model.Carrera_Titulo, "", new { @class = "text-danger" })
+                    </div>
+
+                    <!-- Código -->
+                    <div class="form-group mb-4 col-6">
+                        @Html.LabelFor(model => model.Carrera_Codigo, "Código", new { @class = "form-label" })
+                        @Html.TextBoxFor(model => model.Carrera_Codigo, new { @class = "form-control", @id = "txtCarreraCodigo", @type = "text", placeholder = "Código de la carrera" })
+                        @Html.ValidationMessageFor(model => model.Carrera_Codigo, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="row">
+                    <!-- Tipo -->
+                    <div class="form-group mb-4 col-6">
+                        @Html.LabelFor(model => model.Carrera_Tipo, "Tipo", new { @class = "form-label" })
+                        @Html.TextBoxFor(model => model.Carrera_Tipo, new { @class = "form-control", @id = "txtCarreraTipo", @type = "text", placeholder = "Tipo de carrera" })
+                        @Html.ValidationMessageFor(model => model.Carrera_Tipo, "", new { @class = "text-danger" })
+                    </div>
+
+                    <!-- Modalidad -->
+                    <div class="form-group mb-4 col-6">
+                        @Html.LabelFor(model => model.Carrera_Modalidad, "Modalidad", new { @class = "form-label" })
+                        @Html.TextBoxFor(model => model.Carrera_Modalidad, new { @class = "form-control", @id = "txtCarreraModalidad", @type = "text", placeholder = "Modalidad de la carrera" })
+                        @Html.ValidationMessageFor(model => model.Carrera_Modalidad, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="row">
+                    <!-- Coste -->
+                    <div class="form-group mb-4 col-6">
+                        @Html.LabelFor(model => model.Carrera_Coste, "Coste", new { @class = "form-label" })
+                        @Html.TextBoxFor(model => model.Carrera_Coste, new { @class = "form-control", @id = "txtCarreraCoste", @type = "number", placeholder = "Coste de la carrera" })
+                        @Html.ValidationMessageFor(model => model.Carrera_Coste, "", new { @class = "text-danger" })
+                    </div>
+
+                    <!-- Número de Asignaturas -->
+                    <div class="form-group mb-4 col-6">
+                        @Html.LabelFor(model => model.Carrera_NumeroAsignaturas, "Número de Asignaturas", new { @class = "form-label" })
+                        @Html.TextBoxFor(model => model.Carrera_NumeroAsignaturas, new { @class = "form-control", @id = "txtCarreraNumeroAsignaturas", @type = "number", placeholder = "Número de asignaturas" })
+                        @Html.ValidationMessageFor(model => model.Carrera_NumeroAsignaturas, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <!-- Botón de Enviar -->
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary btn-lg">
+                        <i class="fas fa-save"></i> Actualizar
+                    </button>
+                </div>
+            }
+        </div>
     </div>
-
-    @using (Html.BeginForm("UpdateCarrera", "Carrera",new { IdCarrera = Model.Carrera_IdCarrera }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-    {
-        @Html.HiddenFor(model => model.Carrera_IdCarrera)
-
-        <div class="form-group mt-3">
-            @Html.LabelFor(model => model.Carrera_Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.Carrera_Nombre, new { @class = "form-control" })
-            </div>
-        </div>
-
-        <div class="form-group mt-3">
-            @Html.LabelFor(model => model.Carrera_Duracion, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.Carrera_Duracion, new { @class = "form-control" })
-            </div>
-        </div>
-
-        <div class="form-group mt-3">
-            @Html.LabelFor(model => model.Carrera_Titulo, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.Carrera_Titulo, new { @class = "form-control" })
-            </div>
-        </div>
-
-        <div class="form-group mt-3">
-            @Html.LabelFor(model => model.Carrera_Codigo, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.Carrera_Codigo, new { @class = "form-control" })
-            </div>
-        </div>
-
-        <div class="form-group mt-3">
-            @Html.LabelFor(model => model.Carrera_Tipo, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.Carrera_Tipo, new { @class = "form-control" })
-            </div>
-        </div>
-
-        <div class="form-group mt-3">
-            @Html.LabelFor(model => model.Carrera_Modalidad, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.Carrera_Modalidad, new { @class = "form-control" })
-            </div>
-        </div>
-
-        <div class="form-group mt-3">
-            @Html.LabelFor(model => model.Carrera_Coste, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.Carrera_Coste, new { @class = "form-control" })
-            </div>
-        </div>
-
-        <div class="form-group mt-3">
-            @Html.LabelFor(model => model.Carrera_NumeroAsignaturas, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.Carrera_NumeroAsignaturas, new { @class = "form-control" })
-            </div>
-        </div>
-
-        <div class="form-group mt-3">
-            <div class="col-md-offset-2 col-md-10">
-                <button type="submit" class="btn btn-primary">Actualizar</button>
-            </div>
-        </div>
-    }
 </div>

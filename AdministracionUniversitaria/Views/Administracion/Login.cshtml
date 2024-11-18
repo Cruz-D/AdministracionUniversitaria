@@ -4,23 +4,41 @@
     ViewBag.Title = "Login";
 }
 
-<h2>Login</h2>
+<div class="container d-flex justify-content-center align-items-center ">
+    <div class="card shadow-lg" style="width: 100%; max-width: 500px;">
+        <div class="card-header text-center bg-primary text-white">
+            <h4>Iniciar Sesión</h4>
+        </div>
+        <div class="card-body">
+            @using (Html.BeginForm("Login", "Administracion", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
 
-@using (Html.BeginForm("Login", "Administracion", FormMethod.Post))
-{
-    @Html.AntiForgeryToken()
+                <div class="container">
 
-    <div class="form-group">
-        @Html.LabelFor(m => m.Email)
-        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                    <div class="mb-3">
+                        @Html.LabelFor(m => m.Email, "Correo Electrónico", new { @class = "form-label" })
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control w-100", placeholder = "Introduce tu correo" })
+                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="mb-3">
+                        @Html.LabelFor(m => m.Password, "Contraseña", new { @class = "form-label" })
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control w-100", placeholder = "Introduce tu contraseña" })
+                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                    </div>
+
+
+                </div>
+
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+                </div>
+
+            }
+        </div>
+        <div class="card-footer text-center">
+            <a href="#" class="text-muted">¿Olvidaste tu contraseña?</a>
+        </div>
     </div>
-
-    <div class="form-group">
-        @Html.LabelFor(m => m.Password)
-        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
-    </div>
-
-    <button type="submit" class="btn btn-primary">Login</button>
-}
+</div>

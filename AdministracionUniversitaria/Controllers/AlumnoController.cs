@@ -25,8 +25,13 @@ namespace AdministracionUniversitaria.Controllers
                 .Select(a => new AlumnoViewModel.AlumnoInfo
                 {
                     Id = a.IdAlumno,
-                    NombreCompleto = a.Alumno_Nombre,
-                    Edad = a.Alumno_Edad
+                    Nombre = a.Alumno_Nombre,
+                    Apellido = a.Alumno_Apellido,
+                    Edad = a.Alumno_Edad,
+                    Direccion = a.Alumno_Direccion,
+                    Telefono = a.Alumno_Telefono,
+                    Email = a.Alumno_Email,
+                    
 
                 }).ToList();
 
@@ -38,8 +43,14 @@ namespace AdministracionUniversitaria.Controllers
                 vm.Alumnos = alumnos.Select(a => new AlumnoViewModel.AlumnoInfo
                 {
                     Id = a.Id,
-                    NombreCompleto = a.NombreCompleto,
-                    Edad = a.Edad
+                    Nombre = a.Nombre,
+                    Apellido = a.Apellido,
+                    Edad = a.Edad,
+                    Direccion = a.Direccion,
+                    Telefono = a.Telefono,
+                    Email = a.Email,
+                    
+
 
                 }).ToList();
             };
@@ -66,7 +77,22 @@ namespace AdministracionUniversitaria.Controllers
             //seleccionar el alumno por su id
             var alumno = db.Alumnos_Set.Find(IdAlumno);
 
-            return View(alumno);
+            //crear un objeto de la clase viewmodel
+
+            var vm = new AlumnoViewModel
+            {
+                //llenar los datos del alumno
+                Alumno_Nombre = alumno.Alumno_Nombre,
+                Alumno_Apellido = alumno.Alumno_Apellido,
+                Alumno_Edad = alumno.Alumno_Edad,
+                Alumno_FechaNacimiento = alumno.Alumno_FechaNacimiento,
+                Alumno_Direccion = alumno.Alumno_Direccion,
+                Alumno_Telefono = alumno.Alumno_Telefono,
+                Alumno_Email = alumno.Alumno_Email,
+                Alumno_Foto = alumno.Alumno_Foto
+            };
+
+            return View(vm);
         }
 
         //POST: Crear un alumno en el sistema
@@ -79,7 +105,13 @@ namespace AdministracionUniversitaria.Controllers
             {
                 //llenar los datos del alumno
                 Alumno_Nombre = model.Alumno_Nombre,
-                Alumno_Edad = model.Alumno_Edad
+                Alumno_Edad = model.Alumno_Edad,
+                Alumno_Apellido = model.Alumno_Apellido,
+                Alumno_FechaNacimiento = model.Alumno_FechaNacimiento,
+                Alumno_Direccion = model.Alumno_Direccion,
+                Alumno_Telefono = model.Alumno_Telefono,
+                Alumno_Email = model.Alumno_Email,
+                Alumno_Foto = model.Alumno_Foto
             };
 
             //agregar el alumno a la base de datos
@@ -100,7 +132,13 @@ namespace AdministracionUniversitaria.Controllers
 
             //actualizar los datos del alumno
             alumno.Alumno_Nombre = model.Alumno_Nombre;
+            alumno.Alumno_Apellido = model.Alumno_Apellido;
             alumno.Alumno_Edad = model.Alumno_Edad;
+            alumno.Alumno_FechaNacimiento = model.Alumno_FechaNacimiento;
+            alumno.Alumno_Direccion = model.Alumno_Direccion;
+            alumno.Alumno_Telefono = model.Alumno_Telefono;
+            alumno.Alumno_Email = model.Alumno_Email;
+            alumno.Alumno_Foto = model.Alumno_Foto;
 
             //guardar los cambios en la base de datos
             db.SaveChanges();

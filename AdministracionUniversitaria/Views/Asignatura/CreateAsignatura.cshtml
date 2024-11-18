@@ -1,0 +1,81 @@
+﻿@model AdministracionUniversitaria.ViewModels.AsignaturaViewModel
+
+@{
+    ViewBag.Title = "Crear Asignatura";
+}
+
+<h2 class="text-center mb-4">Crear Asignatura</h2>
+<div class="container d-flex justify-content-center">
+    <div class="row">
+        <div class="col-12">
+            @using (Html.BeginForm("CreateAsignatura", "Asignatura", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="row">
+                    <!-- Nombre de la Asignatura -->
+                    <div class="form-group mb-4 col-6">
+                        @Html.LabelFor(x => x.Asignatura_Nombre, "Nombre de la Asignatura", new { @class = "form-label" })
+                        @Html.TextBoxFor(x => x.Asignatura_Nombre, new { @class = "form-control", @id = "txtAsignaturaNombre", @type = "text", placeholder = "Escriba el nombre de la asignatura" })
+                        @Html.ValidationMessageFor(x => x.Asignatura_Nombre, "", new { @class = "text-danger" })
+                    </div>
+
+                    <!-- Créditos -->
+                    <div class="form-group mb-4 col-6">
+                        @Html.LabelFor(x => x.Asignatura_Creditos, "Créditos", new { @class = "form-label" })
+                        @Html.TextBoxFor(x => x.Asignatura_Creditos, new { @class = "form-control", @id = "txtAsignaturaCreditos", @type = "number", placeholder = "Número de créditos" })
+                        @Html.ValidationMessageFor(x => x.Asignatura_Creditos, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="row">
+                    <!-- Código -->
+                    <div class="form-group mb-4 col-6">
+                        @Html.LabelFor(x => x.Asignatura_Codigo, "Código", new { @class = "form-label" })
+                        @Html.TextBoxFor(x => x.Asignatura_Codigo, new { @class = "form-control", @id = "txtAsignaturaCodigo", @type = "text", placeholder = "Código de la asignatura" })
+                        @Html.ValidationMessageFor(x => x.Asignatura_Codigo, "", new { @class = "text-danger" })
+                    </div>
+
+                    <!-- Tipo -->
+                    <div class="form-group mb-4 col-6">
+                        @Html.LabelFor(x => x.Asignatura_Tipo, "Tipo", new { @class = "form-label" })
+                        @Html.TextBoxFor(x => x.Asignatura_Tipo, new { @class = "form-control", @id = "txtAsignaturaTipo", @type = "text", placeholder = "Tipo de asignatura (obligatoria, electiva...)" })
+                        @Html.ValidationMessageFor(x => x.Asignatura_Tipo, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="row">
+                    <!-- Curso -->
+                    <div class="form-group mb-4 col-6">
+                        @Html.LabelFor(x => x.Asignatura_Curso, "Curso", new { @class = "form-label" })
+                        @Html.TextBoxFor(x => x.Asignatura_Curso, new { @class = "form-control", @id = "txtAsignaturaCurso", @type = "text", placeholder = "Año o curso de la asignatura" })
+                        @Html.ValidationMessageFor(x => x.Asignatura_Curso, "", new { @class = "text-danger" })
+                    </div>
+
+                    <!-- Horario -->
+                    <div class="form-group mb-3 col-6">
+                        @Html.LabelFor(x => x.Asignatura_Horario, "Horario", new { @class = "form-label" })
+                        @Html.TextBoxFor(x => x.Asignatura_Horario, new { @class = "form-control", @id = "txtAsignaturaHorario", @type = "text", placeholder = "Horario de la asignatura" })
+                        @Html.ValidationMessageFor(x => x.Asignatura_Horario, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="row">
+                    <!-- Carrera -->
+                    <div class="form-group mb-4 col-6">
+                        @Html.LabelFor(x => x.IdCarrera, "Carrera", new { @class = "form-label" })
+                        @Html.DropDownListFor(x => x.IdCarrera, new SelectList(Model.Carreras, "Value", "Text"), "Seleccione una carrera", new { @class = "form-select", @id = "ddlCarrera" })
+                        @Html.ValidationMessageFor(x => x.IdCarrera, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <!-- Botón de Enviar -->
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary btn-lg">
+                        <i class="fas fa-save"></i> Crear
+                    </button>
+                </div>
+            }
+        </div>
+    </div>
+</div>

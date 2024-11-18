@@ -1,0 +1,50 @@
+﻿@model AdministracionUniversitaria.ViewModels.MatriculaViewModel
+
+@{
+    ViewBag.Title = "Actualizar Matrícula";
+}
+
+<h2 class="text-center mb-4">Actualizar Matrícula</h2>
+<div class="container d-flex justify-content-center">
+    <div class="row">
+        <div class="col-12">
+            @using (Html.BeginForm("UpdateMatricula", "Matriculacion", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(x => x.IdMatricula)
+
+                <div class="row">
+                    <!-- Alumnos -->
+                    <div class="form-group mb-4 col-6">
+                        @Html.LabelFor(x => x.Alumnos, "Alumno", new { @class = "form-label" })
+                        @Html.TextBoxFor(x => x.Alumnos, new { @class = "form-control", @id = "txtAlumno", @type = "text", @readonly = "readonly" })
+                        @Html.ValidationMessageFor(x => x.IdAlumno, "", new { @class = "text-danger" })
+                    </div>
+
+                    <!-- Carreras -->
+                    <div class="form-group mb-4 col-6">
+                        @Html.LabelFor(x => x.Carreras, "Carrera", new { @class = "form-label" })
+                        @Html.DropDownListFor(x => x.IdCarrera, Model.Carreras, "Seleccione una carrera", new { @class = "form-select", @id = "ddlCarreras" })
+                        @Html.ValidationMessageFor(x => x.IdCarrera, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="row">
+                    <!-- Asignaturas -->
+                    <div class="form-group mb-4 col-6">
+                        @Html.LabelFor(x => x.Asignaturas, "Asignatura", new { @class = "form-label" })
+                        @Html.DropDownListFor(x => x.IdAsignaruta, new List<SelectListItem>(), "Seleccione una asignatura", new { @class = "form-select", @id = "ddlAsignatura" })
+                        @Html.ValidationMessageFor(x => x.IdAsignaruta, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <!-- Botón de Enviar -->
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary btn-lg">
+                        <i class="fas fa-save"></i> Actualizar
+                    </button>
+                </div>
+            }
+        </div>
+    </div>
+</div>

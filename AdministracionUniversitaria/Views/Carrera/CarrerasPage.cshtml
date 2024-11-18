@@ -4,29 +4,37 @@
     ViewBag.Title = "CarrerasPage";
 }
 
-<h2>CarrerasPage</h2>
+<h2 class="text-center">Carreras</h2>
 
-<div class="container mt-5 ">
+<div class="container mt-5">
     @if (Session["TipoUsuario"] != null && Session["TipoUsuario"].ToString() == "SuperAdmin")
     {
-        <p>Agregar una carrera:</p>
-        <a href="@Url.Action("CreateCarrera", "Carrera")" class="btn btn-primary">Añadir una Carrera</a>
+        <div class="text-center mt-4">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createCarreraModal">Añadir una Carrera</button>
+        </div>
     }
 </div>
 
-<div class="container mt-5">
-    <div class="text-center bg-black">
-        <h3 class="text-bg-light">Carreras</h3>
+<!-- Modal para crear carrera -->
+<div class="modal fade" id="createCarreraModal" tabindex="-1" aria-labelledby="createCarreraModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="createCarreraModalLabel">Crear Carrera</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                @Html.Partial("CreateCarrera")
+            </div>
+        </div>
     </div>
 </div>
 
-
-@* Tabla de contenido *@
-<div class="container mt-5">
-    <table class="table table-striped table-bordered">
+<div class="table-responsive mt-4">
+    <table class="table table-striped table-bordered text-center align-middle">
         <thead class="thead-dark">
             <tr>
-                <th></th>
+                <th>Acciones</th>
                 <th>Nombre</th>
                 <th>Duración</th>
                 <th>Título</th>
@@ -44,19 +52,13 @@
                     <td>
                         @if (Session["TipoUsuario"] != null && Session["TipoUsuario"].ToString() == "SuperAdmin")
                         {
-                            <table>
-                                <tr>
-                                    <td>
-                                        <a href="@Url.Action("CarreraDetail", "Carrera", new { IdCarrera = carrera.Carrera_IdCarrera })" class="btn btn-primary" id="btnEditar">Editar</a>
-                                    </td>
-                                    <td>
-                                        @using (Html.BeginForm("DeleteCarrera", "Carrera", new { IdCarrera = carrera.Carrera_IdCarrera }, FormMethod.Post))
-                                        {
-                                            <button type="submit" class="btn btn-danger">Borrar</button>
-                                        }
-                                    </td>
-                                </tr>
-                            </table>
+                            <div class="d-flex justify-content-center gap-2">
+                                <button type="button" class="btn btn-primary btn-sm me-2" data-bs-toggle="modal" data-bs-target="#editCarreraModal-@carrera.Carrera_IdCarrera">Editar</button>
+                                @using (Html.BeginForm("DeleteCarrera", "Carrera", new { IdCarrera = carrera.Carrera_IdCarrera }, FormMethod.Post))
+                                {
+                                    <button type="submit" class="btn btn-danger btn-sm">Borrar</button>
+                                }
+                            </div>
                         }
                     </td>
                     <td>@carrera.Carrera_Nombre</td>
@@ -68,6 +70,32 @@
                     <td>@carrera.Carrera_Coste</td>
                     <td>@carrera.Carrera_NumeroAsignaturas</td>
                 </tr>
+
+                <!-- Edit Modal -->
+                <div class="modal fade" id="editCarreraModal-@carrera.Carrera_IdCarrera" tabindex="-1" aria-labelledby="editCarreraModalLabel-@carrera.Carrera_IdCarrera" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="editCarreraModalLabel-@carrera.Carrera_IdCarrera">Editar Carrera</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                @Html.Partial("CarreraDetail", new AdministracionUniversitaria.ViewModels.CarreraViewModel
+                                {
+                                    Carrera_IdCarrera = carrera.Carrera_IdCarrera,
+                                    Carrera_Nombre = carrera.Carrera_Nombre,
+                                    Carrera_Duracion = carrera.Carrera_Duracion,
+                                    Carrera_Titulo = carrera.Carrera_Titulo,
+                                    Carrera_Codigo = carrera.Carrera_Codigo,
+                                    Carrera_Tipo = carrera.Carrera_Tipo,
+                                    Carrera_Modalidad = carrera.Carrera_Modalidad,
+                                    Carrera_Coste = carrera.Carrera_Coste,
+                                    Carrera_NumeroAsignaturas = carrera.Carrera_NumeroAsignaturas
+                                })
+                            </div>
+                        </div>
+                    </div>
+                </div>
             }
         </tbody>
     </table>

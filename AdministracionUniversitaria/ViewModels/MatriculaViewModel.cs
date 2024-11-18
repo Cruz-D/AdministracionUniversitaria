@@ -30,6 +30,10 @@ namespace AdministracionUniversitaria.ViewModels
         {
             public int IdMatricula { get; set; }
 
+            public int IdAlumno { get; set; }
+
+            public int IdAsignaruta { get; set; }
+
             public string Alumno { get; set; }
 
             public string Asignatura { get; set; }

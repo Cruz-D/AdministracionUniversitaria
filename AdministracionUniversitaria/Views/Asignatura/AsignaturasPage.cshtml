@@ -5,44 +5,100 @@
     ViewBag.Title = "AsignaturasPage";
 }
 
-    <h2>AsignaturasPage</h2>
+<h2 class="text-center">Asignaturas</h2>
 
-    <div class="container mt-5">
-
-        <div class="text-center bg-black">
-
-            <h3 class="text-bg-light">Asignaturas</h3>
-
+<div class="container mt-5">
+    @if (Session["TipoUsuario"] != null && Session["TipoUsuario"].ToString() == "SuperAdmin")
+    {
+        <div class="text-center mt-4">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createAsignaturaModal">
+                Crear Asignatura
+            </button>
         </div>
+    }
 
-        <div>
-            <table class="table table-striped table-bordered">
-                <thead class="thead-dark">
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Créditos</th>
-                        <th>Código</th>
-                        <th>Tipo</th>
-                        <th>Curso</th>
-                        <th>Horario</th>
-                        <th>Carrera</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var asignatura in Model.Asignaturas)
-                    {
-                        <tr>
-                            <td>@asignatura.Asignatura_Nombre</td>
-                            <td>@asignatura.Asignatura_Creditos</td>
-                            <td>@asignatura.Asignatura_Codigo</td>
-                            <td>@asignatura.Asignatura_Tipo</td>
-                            <td>@asignatura.Asignatura_Curso</td>
-                            <td>@asignatura.Asignatura_Horario</td>
-                            <td>@asignatura.Asignatura_Carrera_Nombre</td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
+        <!-- Modal para crear asignatura -->
+        <div class="modal fade" id="createAsignaturaModal" tabindex="-1" aria-labelledby="createAsignaturaModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="createAsignaturaModalLabel">Crear Asignatura</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        @Html.Partial("CreateAsignatura")
+                    </div>
+                </div>
+            </div>
         </div>
-
     </div>
+
+<div class="table-responsive mt-4">
+    <table class="table table-striped table-bordered text-center align-middle">
+        <thead class="thead-dark">
+            <tr>
+                <th>Acciones</th>
+                <th>Nombre</th>
+                <th>Créditos</th>
+                <th>Código</th>
+                <th>Tipo</th>
+                <th>Curso</th>
+                <th>Horario</th>
+                <th>Carrera</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var asignatura in Model.Asignaturas)
+            {
+                <tr>
+                    <td>
+                        <div class="d-flex justify-content-center gap-2">
+                            @if (Session["TipoUsuario"] != null && Session["TipoUsuario"].ToString() == "SuperAdmin")
+                            {
+                                <button type="button" class="btn btn-primary btn-sm me-2" data-bs-toggle="modal" data-bs-target="#editAsignaturaModal-@asignatura.Asignatura_IdAsignatura">Editar</button>
+                                using (Html.BeginForm("DeleteAsignatura", "Asignatura", new { IdAsignatura = asignatura.Asignatura_IdAsignatura }, FormMethod.Post))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <button type="submit" class="btn btn-danger btn-sm">Borrar</button>
+                                }
+                            }
+                        </div>
+                    </td>
+                    <td>@asignatura.Asignatura_Nombre</td>
+                    <td>@asignatura.Asignatura_Creditos</td>
+                    <td>@asignatura.Asignatura_Codigo</td>
+                    <td>@asignatura.Asignatura_Tipo</td>
+                    <td>@asignatura.Asignatura_Curso</td>
+                    <td>@asignatura.Asignatura_Horario</td>
+                    <td>@asignatura.Asignatura_Carrera_Nombre</td>
+                </tr>
+
+                <!-- Edit Modal -->
+                <div class="modal fade" id="editAsignaturaModal-@asignatura.Asignatura_IdAsignatura" tabindex="-1" aria-labelledby="editAsignaturaModalLabel-@asignatura.Asignatura_IdAsignatura" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="editAsignaturaModalLabel-@asignatura.Asignatura_IdAsignatura">Editar Asignatura</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                @Html.Partial("AsignaturaDetail", new AdministracionUniversitaria.ViewModels.AsignaturaViewModel
+                                {
+                                    Asignatura_IdAsignatura = asignatura.Asignatura_IdAsignatura,
+                                    Asignatura_Nombre = asignatura.Asignatura_Nombre,
+                                    Asignatura_Creditos = asignatura.Asignatura_Creditos,
+                                    Asignatura_Codigo = asignatura.Asignatura_Codigo,
+                                    Asignatura_Tipo = asignatura.Asignatura_Tipo,
+                                    Asignatura_Curso = asignatura.Asignatura_Curso,
+                                    Asignatura_Horario = asignatura.Asignatura_Horario,
+                                  
+                                   
+                                })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,65 +1,88 @@
-﻿@model AdministracionUniversitaria.Models.Alumno
+﻿@model AdministracionUniversitaria.ViewModels.AlumnoViewModel
 
 @{
-    ViewBag.Title = "AlumnoDetail";
+    ViewBag.Title = "Detalle del Alumno";
 }
 
-<div class="container mb-4">
-    <a href="@Url.Action("AlumnosPage", "Alumno")" class="btn btn-outline-info">Volver a la lista de Alumnos</a>
-</div>
+<h2 class="text-center mb-4">Detalle del Alumno</h2>
+<div class="container d-flex justify-content-center">
+    <div class="row">
+        <div class="col-12">
+            @using (Html.BeginForm("UpdateAlumno", "Alumno", new { IdAlumno = Model.AlumnoId }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
 
-<h2 class="text-center">Detalle del Alumno</h2>
+                <div class="row">
+                    <!-- Nombre del Alumno -->
+                    <div class="form-group mb-4 col-6">
+                        @Html.LabelFor(x => x.Alumno_Nombre, "Nombre del Alumno", new { @class = "form-label" })
+                        @Html.TextBoxFor(x => x.Alumno_Nombre, new { @class = "form-control", @id = "txtAlumnoNombre", @type = "text", placeholder = "Escriba el nombre del alumno" })
+                        @Html.ValidationMessageFor(x => x.Alumno_Nombre, "", new { @class = "text-danger" })
+                    </div>
 
-<div class="text-center mb-4">
-    <img src="@Url.Content(Model.Alumno_Foto)" alt="Foto del Alumno" class="rounded-circle" style="width: 150px; height: 150px;">
-</div>
-
-@using (Html.BeginForm("UpdateAlumno", "Alumno", new { IdAlumno = Model.IdAlumno }, FormMethod.Post))
-{
-    <div class="container mt-5">
-        <div class="row">
-            <div class="col-md-6 offset-md-3">
-                <div class="form-group">
-                    @Html.LabelFor(x => x.Alumno_Nombre, "Nombre", new { @class = "form-label" })
-                    @Html.TextBoxFor(x => x.Alumno_Nombre, new { @class = "form-control", @id = "txtAlumnoNombre", @type = "text" })
+                    <!-- Apellido del Alumno -->
+                    <div class="form-group mb-4 col-6">
+                        @Html.LabelFor(x => x.Alumno_Apellido, "Apellido del Alumno", new { @class = "form-label" })
+                        @Html.TextBoxFor(x => x.Alumno_Apellido, new { @class = "form-control", @id = "txtAlumnoApellido", @type = "text", placeholder = "Escriba el apellido del alumno" })
+                        @Html.ValidationMessageFor(x => x.Alumno_Apellido, "", new { @class = "text-danger" })
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    @Html.LabelFor(x => x.Alumno_Apellido, "Apellido", new { @class = "form-label" })
-                    @Html.TextBoxFor(x => x.Alumno_Apellido, new { @class = "form-control", @id = "txtAlumnoApellido", @type = "text" })
+                <div class="row">
+                    <!-- Edad -->
+                    <div class="form-group mb-4 col-6">
+                        @Html.LabelFor(x => x.Alumno_Edad, "Edad", new { @class = "form-label" })
+                        @Html.TextBoxFor(x => x.Alumno_Edad, new { @class = "form-control", @id = "txtAlumnoEdad", @type = "number", placeholder = "Edad del alumno" })
+                        @Html.ValidationMessageFor(x => x.Alumno_Edad, "", new { @class = "text-danger" })
+                    </div>
+
+                    <!-- Fecha de Nacimiento -->
+                    <div class="form-group mb-4 col-6">
+                        @Html.LabelFor(x => x.Alumno_FechaNacimiento, "Fecha de Nacimiento", new { @class = "form-label" })
+                        @Html.TextBoxFor(x => x.Alumno_FechaNacimiento, new { @class = "form-control", @id = "txtAlumnoFechaNacimiento", @type = "date", placeholder = "Fecha de nacimiento del alumno" })
+                        @Html.ValidationMessageFor(x => x.Alumno_FechaNacimiento, "", new { @class = "text-danger" })
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    @Html.LabelFor(x => x.Alumno_Edad, "Edad", new { @class = "form-label" })
-                    @Html.TextBoxFor(x => x.Alumno_Edad, new { @class = "form-control", @id = "txtAlumnoEdad", @type = "number" })
+                <div class="row">
+                    <!-- Dirección -->
+                    <div class="form-group mb-4 col-6">
+                        @Html.LabelFor(x => x.Alumno_Direccion, "Dirección", new { @class = "form-label" })
+                        @Html.TextBoxFor(x => x.Alumno_Direccion, new { @class = "form-control", @id = "txtAlumnoDireccion", @type = "text", placeholder = "Dirección del alumno" })
+                        @Html.ValidationMessageFor(x => x.Alumno_Direccion, "", new { @class = "text-danger" })
+                    </div>
+
+                    <!-- Teléfono -->
+                    <div class="form-group mb-4 col-6">
+                        @Html.LabelFor(x => x.Alumno_Telefono, "Teléfono", new { @class = "form-label" })
+                        @Html.TextBoxFor(x => x.Alumno_Telefono, new { @class = "form-control", @id = "txtAlumnoTelefono", @type = "text", placeholder = "Teléfono del alumno" })
+                        @Html.ValidationMessageFor(x => x.Alumno_Telefono, "", new { @class = "text-danger" })
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    @Html.LabelFor(x => x.Alumno_FechaNacimiento, "Fecha de Nacimiento", new { @class = "form-label" })
-                    @Html.TextBoxFor(x => x.Alumno_FechaNacimiento, new { @class = "form-control", @id = "txtAlumnoFechaNacimiento", @type = "date" })
+                <div class="row">
+                    <!-- Email -->
+                    <div class="form-group mb-4 col-6">
+                        @Html.LabelFor(x => x.Alumno_Email, "Email", new { @class = "form-label" })
+                        @Html.TextBoxFor(x => x.Alumno_Email, new { @class = "form-control", @id = "txtAlumnoEmail", @type = "email", placeholder = "Email del alumno" })
+                        @Html.ValidationMessageFor(x => x.Alumno_Email, "", new { @class = "text-danger" })
+                    </div>
+
+                    <!-- Foto -->
+                    <div class="form-group mb-4 col-6">
+                        @Html.LabelFor(x => x.Alumno_Foto, "Foto", new { @class = "form-label" })
+                        @Html.TextBoxFor(x => x.Alumno_Foto, new { @class = "form-control", @id = "txtAlumnoFoto", @type = "text", placeholder = "URL de la foto del alumno" })
+                        @Html.ValidationMessageFor(x => x.Alumno_Foto, "", new { @class = "text-danger" })
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    @Html.LabelFor(x => x.Alumno_Direccion, "Dirección", new { @class = "form-label" })
-                    @Html.TextBoxFor(x => x.Alumno_Direccion, new { @class = "form-control", @id = "txtAlumnoDireccion", @type = "text" })
+                <!-- Botón de Enviar -->
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary btn-lg">
+                        <i class="fas fa-save"></i> Actualizar
+                    </button>
                 </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(x => x.Alumno_Email, "Email", new { @class = "form-label" })
-                    @Html.TextBoxFor(x => x.Alumno_Email, new { @class = "form-control", @id = "txtAlumnoEmail", @type = "email" })
-                </div>
-
-                <div class="text-center mt-4">
-                    <button type="submit" class="btn btn-primary">Actualizar Alumno</button>
-                </div>
-            </div>
+            }
         </div>
     </div>
-}
-
-@using (Html.BeginForm("DeleteAlumno", "Alumno", new { IdAlumno = Model.IdAlumno }, FormMethod.Post))
-{
-    <div class="container mt-5 text-center">
-        <button type="submit" class="btn btn-danger">Borrar Alumno</button>
-    </div>
-}
+</div>

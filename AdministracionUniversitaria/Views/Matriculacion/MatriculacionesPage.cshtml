@@ -1,57 +1,41 @@
-﻿@model AdministracionUniversitaria.ViewModels.MatriculaViewModel
+﻿@using AdministracionUniversitaria.ViewModels
+@model MatriculaViewModel
 
 @{
     ViewBag.Title = "MatriculacionesPage";
 }
 
-<h2>Matricular</h2>
+<h2 class="text-center">Matricular</h2>
 
-@using (Html.BeginForm("Matricular", "Matriculacion", FormMethod.Post))
-{
-    <div class="form-group mt-3">
-        @Html.LabelFor(x => x.Alumnos)
-        @*//dropdownlistfor que pinta un dropdownlist con los alumnos que se le pasan en el modelo*@
-        @Html.DropDownListFor(x => x.IdAlumno,
-                  Model.Alumnos, "Seleccione un alumno",
-                  new { @class = "form-control" })
+<div class="text-center mt-4">
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createMatriculaModal">
+        Matricular
+    </button>
+</div>
+
+<!-- Modal para crear matrícula -->
+<div class="modal fade" id="createMatriculaModal" tabindex="-1" aria-labelledby="createMatriculaModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="createMatriculaModalLabel">Matricular</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                @Html.Partial("CreateMatricula")
+            </div>
+        </div>
     </div>
+</div>
 
-    <div class="form-group mt-3">
-        @Html.LabelFor(x => x.Carreras)
-        @*//dropdownlistfor que pinta un dropdownlist con los las carreras y lo controlamos plantandole un id*@
-        @Html.DropDownListFor(x => x.IdCarrera,
-                 Model.Carreras, "Seleccione una Carrera",
-                 new { @class = "form-control", @id = "ddlCarreras" })
-    </div>
-
-    <div class="form-group mt-3">
-        @Html.LabelFor(x => x.Asignaturas)
-        @*//dropdownlistfor que pinta un dropdownlist con las asignaturas y lo controlamos plantandole un id*@
-        @Html.DropDownListFor(x => x.IdAsignaruta, new List<SelectListItem>(),
-        "Seleccione una asignatura", new { @class = "form-control", @id = "ddlAsignatura" })
-    </div>
-
-    <div class="form-group mt-3">
-
-        <button type="submit" class="btn btn-primary">Matricular</button>
-
-    </div>
-}
-
-<div class="container mt-5">
-
-    <div class="text-center bg-black">
-        <h3 class="text-bg-light">Matriculaciones</h3>
-    </div>
-
-    <table class="table table-striped table-bordered">
+<div class="table-responsive mt-4">
+    <table class="table table-striped table-bordered text-center align-middle">
         <thead class="thead-dark">
             <tr>
                 <th>Acciones</th>
                 <th>Alumno</th>
                 <th>Asignatura</th>
-                <th>Fecha de Matriculacion</th>
-                
+                <th>Fecha de Matriculación</th>
             </tr>
         </thead>
         <tbody>
@@ -59,32 +43,43 @@
             {
                 <tr>
                     <td>
-                        <table>
-                            <tr>
-                                <td>
-                                    @using (Html.BeginForm("EditMatricula", "Matriculacion", new { IdMatricula = matricula.IdMatricula }, FormMethod.Post))
-                                    {
-                                        <button type="submit" class="btn btn-primary">Editar</button>
-                                    }
-                                </td>
-                                <td>
-                                    @using (Html.BeginForm("DeleteMatricula", "Matriculacion", new { IdMatricula = matricula.IdMatricula }, FormMethod.Post))
-                                    {
-                                        <button type="submit" class="btn btn-danger">Borrar</button>
-                                    }
-                                </td>
-                            </tr>
-                        </table>
+                        <div class="d-flex justify-content-center gap-2">
+                            <button type="button" class="btn btn-primary btn-sm me-2" data-bs-toggle="modal" data-bs-target="#editMatriculaModal-@matricula.IdMatricula">Editar</button>
+                            @using (Html.BeginForm("DeleteMatricula", "Matriculacion", new { IdMatricula = matricula.IdMatricula }, FormMethod.Post))
+                            {
+                                <button type="submit" class="btn btn-danger btn-sm">Borrar</button>
+                            }
+                        </div>
                     </td>
-
                     <td>@matricula.Alumno</td>
                     <td>@matricula.Asignatura</td>
                     <td>@matricula.FechaMatricula.ToString("dd/MM/yyyy")</td>
                 </tr>
+
+                <!-- Edit Modal -->
+                <div class="modal fade" id="editMatriculaModal-@matricula.IdMatricula" tabindex="-1" aria-labelledby="editMatriculaModalLabel-@matricula.IdMatricula" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="editMatriculaModalLabel-@matricula.IdMatricula">Editar Matrícula</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                @Html.Partial("MatriculaDetail", new AdministracionUniversitaria.ViewModels.MatriculaViewModel
+                                {
+                                    IdMatricula = matricula.IdMatricula,
+                                    IdAlumno = matricula.IdAlumno,
+                                    IdAsignaruta = matricula.IdAsignaruta
+                                    
+                                    
+                                })
+                            </div>
+                        </div>
+                    </div>
+                </div>
             }
         </tbody>
     </table>
-
 </div>
 
 @section scripts{
@@ -132,8 +127,5 @@
             });
 
         });
-
-
-
     </script>
 }
