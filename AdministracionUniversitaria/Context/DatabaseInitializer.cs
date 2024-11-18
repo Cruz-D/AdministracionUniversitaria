@@ -85,6 +85,7 @@ namespace AdministracionUniversitaria.Context
             };
             administracion.ForEach(a => context.Administracion_Set.Add(a));
             context.SaveChanges();
+
         }
     }
 }
