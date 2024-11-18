@@ -4,7 +4,6 @@
     ViewBag.Title = "Detalle del Alumno";
 }
 
-<h2 class="text-center mb-4">Detalle del Alumno</h2>
 <div class="container d-flex justify-content-center">
     <div class="row">
         <div class="col-12">
@@ -36,12 +35,14 @@
                         @Html.ValidationMessageFor(x => x.Alumno_Edad, "", new { @class = "text-danger" })
                     </div>
 
-                    <!-- Fecha de Nacimiento -->
+                    <!-- Email -->
                     <div class="form-group mb-4 col-6">
-                        @Html.LabelFor(x => x.Alumno_FechaNacimiento, "Fecha de Nacimiento", new { @class = "form-label" })
-                        @Html.TextBoxFor(x => x.Alumno_FechaNacimiento, new { @class = "form-control", @id = "txtAlumnoFechaNacimiento", @type = "date", placeholder = "Fecha de nacimiento del alumno" })
-                        @Html.ValidationMessageFor(x => x.Alumno_FechaNacimiento, "", new { @class = "text-danger" })
+                        @Html.LabelFor(x => x.Alumno_Email, "Email", new { @class = "form-label" })
+                        @Html.TextBoxFor(x => x.Alumno_Email, new { @class = "form-control", @id = "txtAlumnoEmail", @type = "email", placeholder = "Email del alumno" })
+                        @Html.ValidationMessageFor(x => x.Alumno_Email, "", new { @class = "text-danger" })
                     </div>
+
+
                 </div>
 
                 <div class="row">
@@ -60,21 +61,6 @@
                     </div>
                 </div>
 
-                <div class="row">
-                    <!-- Email -->
-                    <div class="form-group mb-4 col-6">
-                        @Html.LabelFor(x => x.Alumno_Email, "Email", new { @class = "form-label" })
-                        @Html.TextBoxFor(x => x.Alumno_Email, new { @class = "form-control", @id = "txtAlumnoEmail", @type = "email", placeholder = "Email del alumno" })
-                        @Html.ValidationMessageFor(x => x.Alumno_Email, "", new { @class = "text-danger" })
-                    </div>
-
-                    <!-- Foto -->
-                    <div class="form-group mb-4 col-6">
-                        @Html.LabelFor(x => x.Alumno_Foto, "Foto", new { @class = "form-label" })
-                        @Html.TextBoxFor(x => x.Alumno_Foto, new { @class = "form-control", @id = "txtAlumnoFoto", @type = "text", placeholder = "URL de la foto del alumno" })
-                        @Html.ValidationMessageFor(x => x.Alumno_Foto, "", new { @class = "text-danger" })
-                    </div>
-                </div>
 
                 <!-- Botón de Enviar -->
                 <div class="text-center">

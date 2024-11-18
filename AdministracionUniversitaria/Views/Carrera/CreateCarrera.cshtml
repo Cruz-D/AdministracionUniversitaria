@@ -4,7 +4,6 @@
     ViewBag.Title = "Crear Carrera";
 }
 
-<h2 class="text-center mb-4">Crear Carrera</h2>
 <div class="container d-flex justify-content-center">
     <div class="row">
         <div class="col-12">
@@ -23,7 +22,7 @@
                     <!-- Duración -->
                     <div class="form-group mb-4 col-6">
                         @Html.LabelFor(m => m.Carrera_Duracion, "Duración", new { @class = "form-label" })
-                        @Html.TextBoxFor(m => m.Carrera_Duracion, new { @class = "form-control", @id = "txtCarreraDuracion", @type = "text", placeholder = "Duración de la carrera" })
+                        @Html.DropDownListFor(m => m.Carrera_Duracion, new SelectList(new List<string> { "1 año", "2 años", "3 años", "4 años", "5 años" }), "Seleccione la duración", new { @class = "form-select", @id = "ddlCarreraDuracion" })
                         @Html.ValidationMessageFor(m => m.Carrera_Duracion, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -32,7 +31,7 @@
                     <!-- Título -->
                     <div class="form-group mb-4 col-6">
                         @Html.LabelFor(m => m.Carrera_Titulo, "Título", new { @class = "form-label" })
-                        @Html.TextBoxFor(m => m.Carrera_Titulo, new { @class = "form-control", @id = "txtCarreraTitulo", @type = "text", placeholder = "Título de la carrera" })
+                        @Html.DropDownListFor(m => m.Carrera_Titulo, new SelectList(new List<string> { "Ingeniero", "Licenciado", "Doctor", "Máster" }), "Seleccione el título", new { @class = "form-select", @id = "ddlCarreraTitulo" })
                         @Html.ValidationMessageFor(m => m.Carrera_Titulo, "", new { @class = "text-danger" })
                     </div>
 
@@ -44,44 +43,38 @@
                     </div>
                 </div>
 
-                <div class="row">
-                    <!-- Tipo -->
-                    <div class="form-group mb-4 col-6">
-                        @Html.LabelFor(m => m.Carrera_Tipo, "Tipo", new { @class = "form-label" })
-                        @Html.TextBoxFor(m => m.Carrera_Tipo, new { @class = "form-control", @id = "txtCarreraTipo", @type = "text", placeholder = "Tipo de carrera" })
-                        @Html.ValidationMessageFor(m => m.Carrera_Tipo, "", new { @class = "text-danger" })
+                    <div class="row">
+                        <!-- Tipo -->
+                        <div class="form-group mb-4 col-6">
+                            @Html.LabelFor(m => m.Carrera_Tipo, "Tipo", new { @class = "form-label" })
+                            @Html.DropDownListFor(m => m.Carrera_Tipo, new SelectList(new List<string> { "Grado", "Máster", "Doctorado", "Licenciatura" }), "Seleccione el tipo de carrera", new { @class = "form-select", @id = "ddlCarreraTipo" })
+                            @Html.ValidationMessageFor(m => m.Carrera_Tipo, "", new { @class = "text-danger" })
+                        </div>
+
+                        <!-- Modalidad -->
+                        <div class="form-group mb-4 col-6">
+                            @Html.LabelFor(m => m.Carrera_Modalidad, "Modalidad", new { @class = "form-label" })
+                            @Html.DropDownListFor(m => m.Carrera_Modalidad, new SelectList(new List<string> { "Presencial", "Online", "Semipresencial" }), "Seleccione la modalidad", new { @class = "form-select", @id = "ddlCarreraModalidad" })
+                            @Html.ValidationMessageFor(m => m.Carrera_Modalidad, "", new { @class = "text-danger" })
+                        </div>
                     </div>
 
-                    <!-- Modalidad -->
-                    <div class="form-group mb-4 col-6">
-                        @Html.LabelFor(m => m.Carrera_Modalidad, "Modalidad", new { @class = "form-label" })
-                        @Html.TextBoxFor(m => m.Carrera_Modalidad, new { @class = "form-control", @id = "txtCarreraModalidad", @type = "text", placeholder = "Modalidad de la carrera" })
-                        @Html.ValidationMessageFor(m => m.Carrera_Modalidad, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="row">
-                    <!-- Coste -->
-                    <div class="form-group mb-4 col-6">
-                        @Html.LabelFor(m => m.Carrera_Coste, "Coste", new { @class = "form-label" })
-                        @Html.TextBoxFor(m => m.Carrera_Coste, new { @class = "form-control", @id = "txtCarreraCoste", @type = "number", placeholder = "Coste de la carrera" })
-                        @Html.ValidationMessageFor(m => m.Carrera_Coste, "", new { @class = "text-danger" })
+                    <div class="row">
+                        <!-- Coste -->
+                        <div class="form-group mb-4 col-6">
+                            @Html.LabelFor(m => m.Carrera_Coste, "Coste", new { @class = "form-label" })
+                            @Html.TextBoxFor(m => m.Carrera_Coste, new { @class = "form-control", @id = "txtCarreraCoste", @type = "number", placeholder = "Coste de la carrera" })
+                            @Html.ValidationMessageFor(m => m.Carrera_Coste, "", new { @class = "text-danger" })
+                        </div>
+                 
                     </div>
 
-                    <!-- Número de Asignaturas -->
-                    <div class="form-group mb-4 col-6">
-                        @Html.LabelFor(m => m.Carrera_NumeroAsignaturas, "Número de Asignaturas", new { @class = "form-label" })
-                        @Html.TextBoxFor(m => m.Carrera_NumeroAsignaturas, new { @class = "form-control", @id = "txtCarreraNumeroAsignaturas", @type = "number", placeholder = "Número de asignaturas" })
-                        @Html.ValidationMessageFor(m => m.Carrera_NumeroAsignaturas, "", new { @class = "text-danger" })
+                    <!-- Botón de Enviar -->
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            <i class="fas fa-save"></i> Crear
+                        </button>
                     </div>
-                </div>
-
-                <!-- Botón de Enviar -->
-                <div class="text-center">
-                    <button type="submit" class="btn btn-primary btn-lg">
-                        <i class="fas fa-save"></i> Crear
-                    </button>
-                </div>
             }
         </div>
     </div>

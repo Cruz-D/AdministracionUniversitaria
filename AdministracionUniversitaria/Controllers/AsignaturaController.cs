@@ -1,14 +1,12 @@
 ﻿using AdministracionUniversitaria.Context;
 using AdministracionUniversitaria.Models;
 using AdministracionUniversitaria.ViewModels;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace AdministracionUniversitaria.Controllers
 {
+    [Authorize]
     public class AsignaturaController : Controller
     {
         // Instanciar la base de datos
@@ -140,7 +138,7 @@ namespace AdministracionUniversitaria.Controllers
                 asignatura.Asignatura_Tipo = vm.Asignatura_Tipo;
                 asignatura.Asignatura_Curso = vm.Asignatura_Curso;
                 asignatura.Asignatura_Horario = vm.Asignatura_Horario;
-                asignatura.IdCarrera = vm.IdCarrera;
+                //asignatura.IdCarrera = vm.IdCarrera;
 
                 db.SaveChanges();
 

@@ -1,6 +1,7 @@
 ﻿using AdministracionUniversitaria.Context;
 using AdministracionUniversitaria.Models;
 using AdministracionUniversitaria.ViewModels;
+using System;
 using System.Linq;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -29,34 +30,38 @@ namespace AdministracionUniversitaria.Controllers
 
                 if (admin != null)
                 {
-                    if (admin.Administracion_Tipo == "superAdmin")
+                    try
                     {
-                        //Con forms authentication se crea una cookie de autenticación
-                        //que se almacena en el navegador del usuario
-                        FormsAuthentication.SetAuthCookie(admin.Administracion_Email, false);
+                        if (admin.Administracion_Tipo == "superAdmin")
+                        {
+                            //Con forms authentication se crea una cookie de autenticación
+                            //que se almacena en el navegador del usuario
+                            FormsAuthentication.SetAuthCookie(admin.Administracion_Email, false);
 
-                        //guardar el tipo de usuario en un session
-                        Session["TipoUsuario"] = admin.Administracion_Tipo;
+                            //guardar el tipo de usuario en un session
+                            Session["TipoUsuario"] = admin.Administracion_Tipo;
 
-                        // Si el administrador es de tipo "admin", se redirige a la página de administrador
-                        return RedirectToAction("Index", "Home");
+                            // Si el administrador es de tipo "admin", se redirige a la página de administrador
+                            return RedirectToAction("Index", "Home");
+                        }
+                        else
+                        {
+                            FormsAuthentication.SetAuthCookie(admin.Administracion_Email, false);
+                            // Si el administrador es de tipo "user", se redirige a la página de usuario
+
+                            //guardar el tipo de usuario en un session
+                            Session["TipoUsuario"] = admin.Administracion_Tipo;
+
+                            return RedirectToAction("Index", "Home");
+                        }
                     }
-                    else
+                    catch (Exception)
                     {
-                        FormsAuthentication.SetAuthCookie(admin.Administracion_Email, false);
-                        // Si el administrador es de tipo "user", se redirige a la página de usuario
-
-                        //guardar el tipo de usuario en un session
-                        Session["TipoUsuario"] = admin.Administracion_Tipo;
-
-                        return RedirectToAction("Index", "Home");
+                        // Manejo de la excepción
+                        ModelState.AddModelError("", "Ocurrió un error al iniciar sesión. Por favor, inténtelo de nuevo.");
+                        // Opcional: registrar el error
+                        // Logger.Error(ex);
                     }
-
-                }
-                else
-                {
-                    // Si no se encuentra un administrador con esos datos, se muestra un mensaje de error
-                    ModelState.AddModelError("", "Correo electrónico o contraseña incorrectos.");
                 }
             }
 

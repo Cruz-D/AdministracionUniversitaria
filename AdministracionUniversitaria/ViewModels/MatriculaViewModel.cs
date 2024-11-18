@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
-using System.Linq;
-using System.Web;
 
 namespace AdministracionUniversitaria.ViewModels
 {
@@ -31,6 +29,8 @@ namespace AdministracionUniversitaria.ViewModels
             public int IdMatricula { get; set; }
 
             public int IdAlumno { get; set; }
+
+            public int IdCarrera { get; set; }
 
             public int IdAsignaruta { get; set; }
 

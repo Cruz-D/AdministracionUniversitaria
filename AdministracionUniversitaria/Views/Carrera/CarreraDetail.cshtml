@@ -4,7 +4,6 @@
     ViewBag.Title = "Actualizar Carrera";
 }
 
-<h2 class="text-center mb-4">Actualizar Carrera</h2>
 <div class="container d-flex justify-content-center">
     <div class="row">
         <div class="col-12">
@@ -16,65 +15,59 @@
                 <div class="row">
                     <!-- Nombre -->
                     <div class="form-group mb-4 col-6">
-                        @Html.LabelFor(model => model.Carrera_Nombre, "Nombre", new { @class = "form-label" })
-                        @Html.TextBoxFor(model => model.Carrera_Nombre, new { @class = "form-control", @id = "txtCarreraNombre", @type = "text", placeholder = "Escriba el nombre de la carrera" })
-                        @Html.ValidationMessageFor(model => model.Carrera_Nombre, "", new { @class = "text-danger" })
+                        @Html.LabelFor(m => m.Carrera_Nombre, "Nombre", new { @class = "form-label" })
+                        @Html.TextBoxFor(m => m.Carrera_Nombre, new { @class = "form-control", @id = "txtCarreraNombre", @type = "text", placeholder = "Escriba el nombre de la carrera" })
+                        @Html.ValidationMessageFor(m => m.Carrera_Nombre, "", new { @class = "text-danger" })
                     </div>
 
                     <!-- Duración -->
                     <div class="form-group mb-4 col-6">
-                        @Html.LabelFor(model => model.Carrera_Duracion, "Duración", new { @class = "form-label" })
-                        @Html.TextBoxFor(model => model.Carrera_Duracion, new { @class = "form-control", @id = "txtCarreraDuracion", @type = "text", placeholder = "Duración de la carrera" })
-                        @Html.ValidationMessageFor(model => model.Carrera_Duracion, "", new { @class = "text-danger" })
+                        @Html.LabelFor(m => m.Carrera_Duracion, "Duración", new { @class = "form-label" })
+                        @Html.DropDownListFor(m => m.Carrera_Duracion, new SelectList(new List<string> { "1 año", "2 años", "3 años", "4 años", "5 años" }), "Seleccione la duración", new { @class = "form-select", @id = "ddlCarreraDuracion" })
+                        @Html.ValidationMessageFor(m => m.Carrera_Duracion, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
                 <div class="row">
                     <!-- Título -->
                     <div class="form-group mb-4 col-6">
-                        @Html.LabelFor(model => model.Carrera_Titulo, "Título", new { @class = "form-label" })
-                        @Html.TextBoxFor(model => model.Carrera_Titulo, new { @class = "form-control", @id = "txtCarreraTitulo", @type = "text", placeholder = "Título de la carrera" })
-                        @Html.ValidationMessageFor(model => model.Carrera_Titulo, "", new { @class = "text-danger" })
+                        @Html.LabelFor(m => m.Carrera_Titulo, "Título", new { @class = "form-label" })
+                        @Html.DropDownListFor(m => m.Carrera_Titulo, new SelectList(new List<string> { "Ingeniero", "Licenciado", "Doctor", "Máster" }), "Seleccione el título", new { @class = "form-select", @id = "ddlCarreraTitulo" })
+                        @Html.ValidationMessageFor(m => m.Carrera_Titulo, "", new { @class = "text-danger" })
                     </div>
 
                     <!-- Código -->
                     <div class="form-group mb-4 col-6">
-                        @Html.LabelFor(model => model.Carrera_Codigo, "Código", new { @class = "form-label" })
-                        @Html.TextBoxFor(model => model.Carrera_Codigo, new { @class = "form-control", @id = "txtCarreraCodigo", @type = "text", placeholder = "Código de la carrera" })
-                        @Html.ValidationMessageFor(model => model.Carrera_Codigo, "", new { @class = "text-danger" })
+                        @Html.LabelFor(m => m.Carrera_Codigo, "Código", new { @class = "form-label" })
+                        @Html.TextBoxFor(m => m.Carrera_Codigo, new { @class = "form-control", @id = "txtCarreraCodigo", @type = "text", placeholder = "Código de la carrera" })
+                        @Html.ValidationMessageFor(m => m.Carrera_Codigo, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
                 <div class="row">
                     <!-- Tipo -->
                     <div class="form-group mb-4 col-6">
-                        @Html.LabelFor(model => model.Carrera_Tipo, "Tipo", new { @class = "form-label" })
-                        @Html.TextBoxFor(model => model.Carrera_Tipo, new { @class = "form-control", @id = "txtCarreraTipo", @type = "text", placeholder = "Tipo de carrera" })
-                        @Html.ValidationMessageFor(model => model.Carrera_Tipo, "", new { @class = "text-danger" })
+                        @Html.LabelFor(m => m.Carrera_Tipo, "Tipo", new { @class = "form-label" })
+                        @Html.DropDownListFor(m => m.Carrera_Tipo, new SelectList(new List<string> { "Grado", "Máster", "Doctorado", "Licenciatura" }), "Seleccione el tipo de carrera", new { @class = "form-select", @id = "ddlCarreraTipo" })
+                        @Html.ValidationMessageFor(m => m.Carrera_Tipo, "", new { @class = "text-danger" })
                     </div>
 
                     <!-- Modalidad -->
                     <div class="form-group mb-4 col-6">
-                        @Html.LabelFor(model => model.Carrera_Modalidad, "Modalidad", new { @class = "form-label" })
-                        @Html.TextBoxFor(model => model.Carrera_Modalidad, new { @class = "form-control", @id = "txtCarreraModalidad", @type = "text", placeholder = "Modalidad de la carrera" })
-                        @Html.ValidationMessageFor(model => model.Carrera_Modalidad, "", new { @class = "text-danger" })
+                        @Html.LabelFor(m => m.Carrera_Modalidad, "Modalidad", new { @class = "form-label" })
+                        @Html.DropDownListFor(m => m.Carrera_Modalidad, new SelectList(new List<string> { "Presencial", "Online", "Semipresencial" }), "Seleccione la modalidad", new { @class = "form-select", @id = "ddlCarreraModalidad" })
+                        @Html.ValidationMessageFor(m => m.Carrera_Modalidad, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
                 <div class="row">
                     <!-- Coste -->
                     <div class="form-group mb-4 col-6">
-                        @Html.LabelFor(model => model.Carrera_Coste, "Coste", new { @class = "form-label" })
-                        @Html.TextBoxFor(model => model.Carrera_Coste, new { @class = "form-control", @id = "txtCarreraCoste", @type = "number", placeholder = "Coste de la carrera" })
-                        @Html.ValidationMessageFor(model => model.Carrera_Coste, "", new { @class = "text-danger" })
+                        @Html.LabelFor(m => m.Carrera_Coste, "Coste", new { @class = "form-label" })
+                        @Html.TextBoxFor(m => m.Carrera_Coste, new { @class = "form-control", @id = "txtCarreraCoste", @type = "number", placeholder = "Coste de la carrera" })
+                        @Html.ValidationMessageFor(m => m.Carrera_Coste, "", new { @class = "text-danger" })
                     </div>
 
-                    <!-- Número de Asignaturas -->
-                    <div class="form-group mb-4 col-6">
-                        @Html.LabelFor(model => model.Carrera_NumeroAsignaturas, "Número de Asignaturas", new { @class = "form-label" })
-                        @Html.TextBoxFor(model => model.Carrera_NumeroAsignaturas, new { @class = "form-control", @id = "txtCarreraNumeroAsignaturas", @type = "number", placeholder = "Número de asignaturas" })
-                        @Html.ValidationMessageFor(model => model.Carrera_NumeroAsignaturas, "", new { @class = "text-danger" })
-                    </div>
                 </div>
 
                 <!-- Botón de Enviar -->

@@ -2,13 +2,12 @@
 using AdministracionUniversitaria.Models;
 using AdministracionUniversitaria.ViewModels;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace AdministracionUniversitaria.Controllers
 {
+    [Authorize]
     public class MatriculacionController : Controller
     {
         //declarar conexion a la base de datos
@@ -19,46 +18,55 @@ namespace AdministracionUniversitaria.Controllers
         [HttpGet]
         public ActionResult MatriculacionesPage()
         {
-            // se crea una sentencia linq para seleccionar los alumnos
-            var matriculas = db.Matricula_Set
-                //seleccionar las matriculas y pintarlas llamando a la clase auxiliar
-                //del viewmodel para mostrar los datos en la vista
-                .Select(m => new MatriculaViewModel.MatriculaInfo
-                {
-                    IdMatricula = m.IdMatricula,
-                    Alumno = m.Alumno.Alumno_Nombre,
-                    Asignatura = m.Asignatura.Asignatura_Nombre,
-                    FechaMatricula = m.Matricula_Fecha
-                }).ToList();
-
-            //se crea un objeto de la clase viewmodel
-            var vm = new MatriculaViewModel
+            try
             {
-                //se llenan las listas de los dropdownlist
-                Alumnos = db.Alumnos_Set
-                    //crear una nueva lista de SelectListItem
-                    .Select(a => new SelectListItem
+                // se crea una sentencia linq para seleccionar los alumnos
+                var matriculas = db.Matricula_Set
+                    //seleccionar las matriculas y pintarlas llamando a la clase auxiliar
+                    //del viewmodel para mostrar los datos en la vista
+                    .Select(m => new MatriculaViewModel.MatriculaInfo
                     {
-                        //seleccionar el id  en el value y el nombre del alumno en el text
-                        Value = a.IdAlumno.ToString(),
-                        Text = a.Alumno_Nombre
-                        //devolverlo en lista
+                        IdMatricula = m.IdMatricula,
+                        Alumno = m.Alumno.Alumno_Nombre,
+                        Asignatura = m.Asignatura.Asignatura_Nombre,
+                        FechaMatricula = m.Matricula_Fecha
+                    }).ToList();
+
+                //se crea un objeto de la clase viewmodel
+                var vm = new MatriculaViewModel
+                {
+                    //se llenan las listas de los dropdownlist
+                    Alumnos = db.Alumnos_Set
+                        //crear una nueva lista de SelectListItem
+                        .Select(a => new SelectListItem
+                        {
+                            //seleccionar el id  en el value y el nombre del alumno en el text
+                            Value = a.IdAlumno.ToString(),
+                            Text = a.Alumno_Nombre
+                            //devolverlo en lista
+                        }).ToList(),
+
+                    //seleccionar las carreras
+                    Carreras = db.Carrera_Set
+                    .Select(c => new SelectListItem
+                    {
+                        Value = c.IdCarrera.ToString(),
+                        Text = c.Carrera_Nombre
                     }).ToList(),
 
-                //seleccionar las carreras
-                Carreras = db.Carrera_Set
-                .Select(c => new SelectListItem
-                {
-                    Value = c.IdCarrera.ToString(),
-                    Text = c.Carrera_Nombre
-                }).ToList(),
+                    //seleccionar las asignaturas
+                    Matriculas = matriculas
+                };
 
-                //seleccionar las asignaturas
-                Matriculas = matriculas
-            };
+                //devolver la vista con el objeto viewmodel
+                return View(vm);
+            }
 
-            //devolver la vista con el objeto viewmodel
-            return View(vm);
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         //Metodo para obtener las asignaturas pasandole el id de la carrera
@@ -96,18 +104,14 @@ namespace AdministracionUniversitaria.Controllers
         [HttpGet]
         public ActionResult MatriculaDetail(int idMatricula)
         {
+            System.Diagnostics.Debug.WriteLine("di encontrada -------> : " + idMatricula);
             //seleccionar la matricula por su id
             var matricula = db.Matricula_Set.Find(idMatricula);
 
             //crear un objeto de la clase viewmodel
             var vm = new MatriculaViewModel
             {
-                //llenar los datos de la matricula
-                IdMatricula = matricula.IdMatricula,
-                IdAlumno = matricula.IdAlumno,
-                IdAsignaruta = matricula.IdAsignatura,
-                IdCarrera = matricula.Asignatura.Carrera.IdCarrera,
-
+                
                 //llenar las listas de los dropdownlist
 
                 Alumnos = db.Alumnos_Set
@@ -130,8 +134,16 @@ namespace AdministracionUniversitaria.Controllers
                     {
                         Value = a.IdAsignatura.ToString(),
                         Text = a.Asignatura_Nombre
-                    }).ToList()
+                    }).ToList(),
+
+                // Asignar los valores actuales de la matrícula
+                IdMatricula = matricula.IdMatricula,
+                IdAlumno = matricula.IdAlumno,
+                IdCarrera = matricula.Asignatura.Carrera.IdCarrera,
+                IdAsignaruta = matricula.IdAsignatura
             };
+
+           
 
             //devolver la vista con el objeto viewmodel
             return View(vm);
@@ -188,6 +200,7 @@ namespace AdministracionUniversitaria.Controllers
             //llenar los datos de la matricula
             matricula.IdAlumno = vm.IdAlumno.Value;
             matricula.IdAsignatura = vm.IdAsignaruta.Value;
+            matricula.Matricula_Fecha = DateTime.Now;
 
             //guardar los cambios en la base de datos
             db.SaveChanges();

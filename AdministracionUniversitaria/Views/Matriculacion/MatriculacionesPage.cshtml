@@ -17,7 +17,7 @@
 <div class="modal fade" id="createMatriculaModal" tabindex="-1" aria-labelledby="createMatriculaModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header bg-primary text-white">
                 <h5 class="modal-title" id="createMatriculaModalLabel">Matricular</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
@@ -60,19 +60,22 @@
                 <div class="modal fade" id="editMatriculaModal-@matricula.IdMatricula" tabindex="-1" aria-labelledby="editMatriculaModalLabel-@matricula.IdMatricula" aria-hidden="true">
                     <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
                         <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="editMatriculaModalLabel-@matricula.IdMatricula">Editar Matrícula</h5>
+                            <div class="modal-header bg-primary text-white">
+                                <h5 class="modal-title" id="editMatriculaModalLabel-@matricula.IdMatricula">Actualizar Matrícula</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                @Html.Partial("MatriculaDetail", new AdministracionUniversitaria.ViewModels.MatriculaViewModel
-                                {
-                                    IdMatricula = matricula.IdMatricula,
-                                    IdAlumno = matricula.IdAlumno,
-                                    IdAsignaruta = matricula.IdAsignaruta
-                                    
-                                    
-                                })
+                                @Html.Partial("MatriculaDetail", new MatriculaViewModel
+                                   {
+                                       IdMatricula = matricula.IdMatricula,
+                                       IdAlumno = matricula.IdAlumno,
+                                       IdCarrera = matricula.IdCarrera,
+                                       IdAsignaruta = matricula.IdAsignaruta,
+                                       Alumnos = Model.Alumnos,
+                                       Carreras = Model.Carreras,
+                                       Asignaturas = Model.Asignaturas
+
+                                   })
                             </div>
                         </div>
                     </div>
@@ -87,7 +90,7 @@
         // cargar asignaturas al cambiar de carrera en el dropdownlist
 
         // cuando cambie el dropdownlist de carreras usando change
-        $("#ddlCarreras").change(function () {
+        $(document).on('change', '#ddlCarreras', function () {
             // alamacenamos el id de la carrera seleccionada
             var idCarrera = $(this).val();
             // llamamos a la accion de obtener asignaturas

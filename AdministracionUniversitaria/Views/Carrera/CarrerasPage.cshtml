@@ -19,7 +19,7 @@
 <div class="modal fade" id="createCarreraModal" tabindex="-1" aria-labelledby="createCarreraModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header bg-primary text-white">
                 <h5 class="modal-title" id="createCarreraModalLabel">Crear Carrera</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
@@ -34,7 +34,10 @@
     <table class="table table-striped table-bordered text-center align-middle">
         <thead class="thead-dark">
             <tr>
-                <th>Acciones</th>
+                @if (Session["TipoUsuario"] != null && Session["TipoUsuario"].ToString() == "SuperAdmin")
+                {
+                    <th>Acciones</th>
+                }
                 <th>Nombre</th>
                 <th>Duración</th>
                 <th>Título</th>
@@ -49,18 +52,19 @@
             @foreach (var carrera in Model.Carreras)
             {
                 <tr>
-                    <td>
-                        @if (Session["TipoUsuario"] != null && Session["TipoUsuario"].ToString() == "SuperAdmin")
-                        {
+                    @if (Session["TipoUsuario"] != null && Session["TipoUsuario"].ToString() == "SuperAdmin")
+                    {
+                        <td>
                             <div class="d-flex justify-content-center gap-2">
                                 <button type="button" class="btn btn-primary btn-sm me-2" data-bs-toggle="modal" data-bs-target="#editCarreraModal-@carrera.Carrera_IdCarrera">Editar</button>
                                 @using (Html.BeginForm("DeleteCarrera", "Carrera", new { IdCarrera = carrera.Carrera_IdCarrera }, FormMethod.Post))
                                 {
+                                    @Html.AntiForgeryToken()
                                     <button type="submit" class="btn btn-danger btn-sm">Borrar</button>
                                 }
                             </div>
-                        }
-                    </td>
+                        </td>
+                    }
                     <td>@carrera.Carrera_Nombre</td>
                     <td>@carrera.Carrera_Duracion</td>
                     <td>@carrera.Carrera_Titulo</td>
@@ -75,7 +79,7 @@
                 <div class="modal fade" id="editCarreraModal-@carrera.Carrera_IdCarrera" tabindex="-1" aria-labelledby="editCarreraModalLabel-@carrera.Carrera_IdCarrera" aria-hidden="true">
                     <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
                         <div class="modal-content">
-                            <div class="modal-header">
+                            <div class="modal-header bg-primary text-white">
                                 <h5 class="modal-title" id="editCarreraModalLabel-@carrera.Carrera_IdCarrera">Editar Carrera</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
