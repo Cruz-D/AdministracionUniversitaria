@@ -37,12 +37,11 @@
             <tr>
                 
                 <th>Acciones</th>
-                <th>Nombre</th>
-                <th>Apellido</th>
+                <th>Nombre Completo</th>
                 <th>Edad</th>
                 <th>Fecha de Nacimiento</th>
                 <th>Dirección</th>
-                <th>Teléfono</th>
+                <th>Teléfono 1</th>
                 <th>Correo</th>
             </tr>
         </thead>
@@ -63,12 +62,11 @@
                         </div>
                     </td>
 
-                    <td>@alumno.Nombre</td>
-                    <td>@alumno.Apellido</td>
+                    <td>@alumno.NombreCompleto</td>
                     <td>@alumno.Edad</td>
-                    <td>@alumno.FechaNacimiento.ToString("dd/MM/yyyy")</td>
-                    <td>@alumno.Direccion</td>
-                    <td>@alumno.Telefono</td>
+                    <td>@alumno.FechaNacimiento</td>
+                    <td>@alumno.DireccionCompleta</td>
+                    <td>@alumno.Telefono_1</td>
                     <td>@alumno.Email</td>
                 </tr>
 
@@ -82,17 +80,26 @@
                             </div>
                             <div class="modal-body">
                                 @Html.Partial("AlumnoDetail", new AdministracionUniversitaria.ViewModels.AlumnoViewModel
-                                {
-                                    AlumnoId = alumno.Id,
-                                    Alumno_Nombre = alumno.Nombre,
-                                    Alumno_Apellido = alumno.Apellido,
-                                    Alumno_Edad = alumno.Edad,
-                                    Alumno_FechaNacimiento = alumno.FechaNacimiento,
-                                    Alumno_Direccion = alumno.Direccion,
-                                    Alumno_Telefono = alumno.Telefono,
-                                    Alumno_Email = alumno.Email,
-                                    Alumno_Foto = alumno.Foto
-                                })
+                           {
+                               Alumno_Nombre = alumno.Nombre,
+                               Alumno_Apellido_1 = alumno.Apellido_1,
+                               Alumno_Apellido_2 = alumno.Apellido_2,
+                               Alumno_sexo = alumno.Sexo,
+                               Alumno_Foto = alumno.Foto,
+                               Alumno_FechaNacimiento = alumno.FechaNacimiento,
+                               Alumno_Telefono_1 = alumno.Telefono_1,
+                               Alumno_Telefono_2 = alumno.Telefono_2,
+                               Alumno_Email = alumno.Email,
+                               Alumno_Via = alumno.Via,
+                               Alumno_Calle = alumno.Calle,
+                               Alumno_Calle_2 = alumno.Calle_2,
+                               Alumno_Numero = alumno.Numero,
+                               Alumno_Escalera = alumno.Escalera,
+                               Alumno_Piso = alumno.Piso,
+                               Alumno_Puerta = alumno.Puerta,
+                               Alumno_ComunidadAutonoma = alumno.ComunidadAutonoma,
+                               Alumno_CodigoPostal = alumno.CodigoPostal
+                           })
                             </div>
                         </div>
                     </div>

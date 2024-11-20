@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using AdministracionUniversitaria.Enums.Alumno;
 using AdministracionUniversitaria.Models;
 
 namespace AdministracionUniversitaria.Context
@@ -9,18 +10,175 @@ namespace AdministracionUniversitaria.Context
     {
         protected override void Seed(ApplicationDbContext context)
         {
+            // Crear datos de prueba para Administracion
+            var administracion = new List<Administracion>
+            {
+                new Administracion { Administracion_Nombre = "Admin", Administracion_Apellido = "Uno", Administracion_Email = "admin1@universidad.com", Administracion_Password = "admin123", Administracion_Tipo = "SuperAdmin", Administracion_FechaCreacion = DateTime.Now },
+                new Administracion { Administracion_Nombre = "Admin", Administracion_Apellido = "Dos", Administracion_Email = "admin2@universidad.com", Administracion_Password = "admin123", Administracion_Tipo = "Admin", Administracion_FechaCreacion = DateTime.Now }
+            };
+            administracion.ForEach(a => context.Administracion_Set.Add(a));
+            context.SaveChanges();
+
             // Crear datos de prueba para Alumnos
             var alumnos = new List<Alumno>
             {
-                new Alumno { Alumno_Nombre = "Juan", Alumno_Apellido = "Perez", Alumno_Edad = 20, Alumno_FechaNacimiento = new DateTime(2001, 5, 15), Alumno_Direccion = "Calle Falsa 123", Alumno_Telefono = "123456789", Alumno_Email = "juan.perez@example.com", Alumno_Foto = "juan.jpg" },
-                new Alumno { Alumno_Nombre = "Maria", Alumno_Apellido = "Lopez", Alumno_Edad = 22, Alumno_FechaNacimiento = new DateTime(1999, 8, 22), Alumno_Direccion = "Avenida Siempre Viva 456", Alumno_Telefono = "987654321", Alumno_Email = "maria.lopez@example.com", Alumno_Foto = "maria.jpg" },
-                new Alumno { Alumno_Nombre = "Carlos", Alumno_Apellido = "Sanchez", Alumno_Edad = 23, Alumno_FechaNacimiento = new DateTime(1998, 3, 10), Alumno_Direccion = "Calle Luna 789", Alumno_Telefono = "456123789", Alumno_Email = "carlos.sanchez@example.com", Alumno_Foto = "carlos.jpg" },
-                new Alumno { Alumno_Nombre = "Ana", Alumno_Apellido = "Torres", Alumno_Edad = 21, Alumno_FechaNacimiento = new DateTime(2000, 11, 30), Alumno_Direccion = "Calle Sol 321", Alumno_Telefono = "321654987", Alumno_Email = "ana.torres@example.com", Alumno_Foto = "ana.jpg" },
-                new Alumno { Alumno_Nombre = "Luis", Alumno_Apellido = "Gomez", Alumno_Edad = 24, Alumno_FechaNacimiento = new DateTime(1997, 7, 25), Alumno_Direccion = "Calle Estrella 654", Alumno_Telefono = "789321456", Alumno_Email = "luis.gomez@example.com", Alumno_Foto = "luis.jpg" },
-                new Alumno { Alumno_Nombre = "Laura", Alumno_Apellido = "Martinez", Alumno_Edad = 19, Alumno_FechaNacimiento = new DateTime(2002, 2, 14), Alumno_Direccion = "Calle Cometa 987", Alumno_Telefono = "654789321", Alumno_Email = "laura.martinez@example.com", Alumno_Foto = "laura.jpg" },
-                new Alumno { Alumno_Nombre = "Pedro", Alumno_Apellido = "Fernandez", Alumno_Edad = 25, Alumno_FechaNacimiento = new DateTime(1996, 9, 5), Alumno_Direccion = "Calle Planeta 159", Alumno_Telefono = "159753486", Alumno_Email = "pedro.fernandez@example.com", Alumno_Foto = "pedro.jpg" },
-                new Alumno { Alumno_Nombre = "Sofia", Alumno_Apellido = "Ramirez", Alumno_Edad = 22, Alumno_FechaNacimiento = new DateTime(1999, 12, 20), Alumno_Direccion = "Calle Galaxia 753", Alumno_Telefono = "753159486", Alumno_Email = "sofia.ramirez@example.com", Alumno_Foto = "sofia.jpg" }
+                new Alumno
+                {
+                    IdAlumno = 1,
+                    Alumno_Nombre = "Juan",
+                    Alumno_Apellido_1 = "Pérez",
+                    Alumno_Apellido_2 = "García",
+                    Alumno_Sexo ="Hombre",// Fixed line
+                    Alumno_FechaNacimiento = new DateTime(2000, 1, 1),
+                    Alumno_FechaRegistro = DateTime.Now,
+                    Alumno_Foto = "foto1.jpg",
+                    Alumno_Telefono_1 = "123456789",
+                    Alumno_Telefono_2 = "987654321",
+                    Alumno_Email = "juan.perez@example.com",
+                    Alumno_Via = "Avenida",
+                    Alumno_Calle = "Gran Vía",
+                    Alumno_Calle_2 = "Apt 1",
+                    Alumno_Numero = "123",
+                    Alumno_Escalera = "A",
+                    Alumno_Piso = "1",
+                    Alumno_Puerta = "1",
+                    Alumno_ComunidadAutonoma = "Madrid",
+                    Alumno_CodigoPostal = "12345",
+                },
+                new Alumno
+                {
+                    Alumno_Nombre = "María",
+                    Alumno_Apellido_1 = "López",
+                    Alumno_Apellido_2 = "Martínez",
+                    Alumno_Sexo ="Mujer",
+                    Alumno_FechaNacimiento = new DateTime(1999, 5, 15),
+                    Alumno_FechaRegistro = DateTime.Now,
+                    Alumno_Foto = "foto2.jpg",
+                    Alumno_Telefono_1 = "234567890",
+                    Alumno_Telefono_2 = "876543210",
+                    Alumno_Email = "maria.lopez@example.com",
+                    Alumno_Via = "Avenida",
+                    Alumno_Calle = "Paseo de la Castellana",
+                    Alumno_Calle_2 = "Apt 2",
+                    Alumno_Numero = "456",
+                    Alumno_Escalera = "B",
+                    Alumno_Piso = "2",
+                    Alumno_Puerta = "2",
+                    Alumno_ComunidadAutonoma = "Cataluña",
+                    Alumno_CodigoPostal = "12345",
+                },
+                new Alumno
+                {
+                    Alumno_Nombre = "Carlos",
+                    Alumno_Apellido_1 = "Gómez",
+                    Alumno_Apellido_2 = "Ruiz",
+                    Alumno_Sexo ="Hombre",
+                    Alumno_FechaNacimiento = new DateTime(1998, 3, 10),
+                    Alumno_FechaRegistro = DateTime.Now,
+                    Alumno_Foto = "foto3.jpg",
+                    Alumno_Telefono_1 = "345678901",
+                    Alumno_Telefono_2 = "765432109",
+                    Alumno_Email = "carlos.gomez@example.com",
+                    Alumno_Via = "Calle",
+                    Alumno_Calle = "Rambla Catalunya",
+                    Alumno_Calle_2 = "Apt 3",
+                    Alumno_Numero = "789",
+                    Alumno_Escalera = "C",
+                    Alumno_Piso = "3",
+                    Alumno_Puerta = "3",
+                    Alumno_ComunidadAutonoma = "Comunidad_Valenciana",
+                    Alumno_CodigoPostal = "12345",
+                },
+                new Alumno
+                {
+                    Alumno_Nombre = "Ana",
+                    Alumno_Apellido_1 = "Fernández",
+                    Alumno_Apellido_2 = "Sánchez",
+                    Alumno_Sexo ="Mujer",
+                    Alumno_FechaNacimiento = new DateTime(1997, 7, 25),
+                    Alumno_FechaRegistro = DateTime.Now,
+                    Alumno_Foto = "foto4.jpg",
+                    Alumno_Telefono_1 = "456789012",
+                    Alumno_Telefono_2 = "654321098",
+                    Alumno_Email = "ana.fernandez@example.com",
+                    Alumno_Via = "Avenida",
+                    Alumno_Calle = "Plaza Mayor",
+                    Alumno_Calle_2 = "Apt 4",
+                    Alumno_Numero = "321",
+                    Alumno_Escalera = "D",
+                    Alumno_Piso = "4",
+                    Alumno_Puerta = "4",
+                    Alumno_ComunidadAutonoma = "Andalucía",
+                    Alumno_CodigoPostal = "12345",
+                },
+                new Alumno
+                {
+                    Alumno_Nombre = "Pedro",
+                    Alumno_Apellido_1 = "Martínez",
+                    Alumno_Apellido_2 = "Hernández",
+                    Alumno_Sexo ="Hombre",
+                    Alumno_FechaNacimiento = new DateTime(2001, 11, 30),
+                    Alumno_FechaRegistro = DateTime.Now,
+                    Alumno_Foto = "foto5.jpg",
+                    Alumno_Telefono_1 = "567890123",
+                    Alumno_Telefono_2 = "543210987",
+                    Alumno_Email = "pedro.martinez@example.com",
+                    Alumno_Via = "AvenidaAvenida",
+                    Alumno_Calle = "Avda. de la Constitución",
+                    Alumno_Calle_2 = "Apt 5",
+                    Alumno_Numero = "654",
+                    Alumno_Escalera = "E",
+                    Alumno_Piso = "5",
+                    Alumno_Puerta = "5",
+                    Alumno_ComunidadAutonoma = "Murcia",
+                    Alumno_CodigoPostal = "12345",
+                },
+                new Alumno
+                {
+                    Alumno_Nombre = "Laura",
+                    Alumno_Apellido_1 = "Santos",
+                    Alumno_Apellido_2 = "Domínguez",
+                    Alumno_Sexo ="Mujer",
+                    Alumno_FechaNacimiento = new DateTime(1995, 12, 12),
+                    Alumno_FechaRegistro = DateTime.Now,
+                    Alumno_Foto = "foto6.jpg",
+                    Alumno_Telefono_1 = "678901234",
+                    Alumno_Telefono_2 = "432109876",
+                    Alumno_Email = "laura.santos@example.com",
+                    Alumno_Via = "Avenida",
+                    Alumno_Calle = "Granada Street",
+                    Alumno_Calle_2 = "Apt 6",
+                    Alumno_Numero = "789",
+                    Alumno_Escalera = "F",
+                    Alumno_Piso = "6",
+                    Alumno_Puerta = "6",
+                    Alumno_ComunidadAutonoma = "Extremadura",
+                    Alumno_CodigoPostal = "12345",
+                },
+                new Alumno
+                {
+                    Alumno_Nombre = "Sofía",
+                    Alumno_Apellido_1 = "Ramírez",
+                    Alumno_Apellido_2 = "Jiménez",
+                    Alumno_Sexo ="Mujer",
+                    Alumno_FechaNacimiento = new DateTime(1996, 6, 18),
+                    Alumno_FechaRegistro = DateTime.Now,
+                    Alumno_Foto = "foto7.jpg",
+                    Alumno_Telefono_1 = "789012345",
+                    Alumno_Telefono_2 = "321098765",
+                    Alumno_Email = "sofia.ramirez@example.com",
+                    Alumno_Via = "Calle",
+                    Alumno_Calle = "Alcalá",
+                    Alumno_Calle_2 = "Apt 7",
+                    Alumno_Numero = "987",
+                    Alumno_Escalera = "G",
+                    Alumno_Piso = "7",
+                    Alumno_Puerta = "7",
+                    Alumno_ComunidadAutonoma = "Galicia",
+                    Alumno_CodigoPostal = "12345",
+                }
             };
+
             alumnos.ForEach(a => context.Alumnos_Set.Add(a));
             context.SaveChanges();
 
@@ -77,15 +235,7 @@ namespace AdministracionUniversitaria.Context
             matriculas.ForEach(m => context.Matricula_Set.Add(m));
             context.SaveChanges();
 
-            // Crear datos de prueba para Administracion
-            var administracion = new List<Administracion>
-            {
-                new Administracion { Administracion_Nombre = "Admin", Administracion_Apellido = "Uno", Administracion_Email = "admin1@universidad.com", Administracion_Password = "admin123", Administracion_Tipo = "SuperAdmin", Administracion_FechaCreacion = DateTime.Now },
-                new Administracion { Administracion_Nombre = "Admin", Administracion_Apellido = "Dos", Administracion_Email = "admin2@universidad.com", Administracion_Password = "admin123", Administracion_Tipo = "Admin", Administracion_FechaCreacion = DateTime.Now }
-            };
-            administracion.ForEach(a => context.Administracion_Set.Add(a));
-            context.SaveChanges();
-
+            
         }
     }
 }

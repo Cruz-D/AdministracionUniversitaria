@@ -135,14 +135,13 @@
     <Compile Include="Controllers\CarreraController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MatriculacionController.cs" />
+    <Compile Include="Enums\Alumno\EnumCodigoPostal.cs" />
+    <Compile Include="Enums\Alumno\EnumComunidadAutonoma.cs" />
+    <Compile Include="Enums\Alumno\EnumSexo.cs" />
+    <Compile Include="Enums\Alumno\EnumVia.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202411171922324_InitialCreate.cs" />
-    <Compile Include="Migrations\202411171922324_InitialCreate.Designer.cs">
-      <DependentUpon>202411171922324_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Administracion.cs" />
     <Compile Include="Models\Alumno.cs" />
     <Compile Include="Models\Asignatura.cs" />
@@ -211,8 +210,6 @@
     <Content Include="Views\Alumno\AlumnosPage.cshtml" />
     <Content Include="Views\Carrera\CarrerasPage.cshtml" />
     <Content Include="Views\Asignatura\AsignaturasPage.cshtml" />
-    <Content Include="Views\Alumno\CreateAlumno.cshtml" />
-    <Content Include="Views\Alumno\AlumnoDetail.cshtml" />
     <Content Include="Views\Carrera\CarreraDetail.cshtml" />
     <Content Include="Views\Carrera\CreateCarrera.cshtml" />
     <Content Include="Views\Administracion\Login.cshtml" />
@@ -220,6 +217,8 @@
     <Content Include="Views\Asignatura\AsignaturaDetail.cshtml" />
     <Content Include="Views\Matriculacion\CreateMatricula.cshtml" />
     <Content Include="Views\Matriculacion\MatriculaDetail.cshtml" />
+    <Content Include="Views\Alumno\AlumnoDetail.cshtml" />
+    <Content Include="Views\Alumno\CreateAlumno.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -250,11 +249,6 @@
     <Content Include="Scripts\bootstrap.bundle.js.map" />
     <Content Include="Scripts\jquery-3.7.0.slim.min.map" />
     <Content Include="Scripts\jquery-3.7.0.min.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\202411171922324_InitialCreate.resx">
-      <DependentUpon>202411171922324_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

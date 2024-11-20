@@ -1,4 +1,5 @@
 ﻿using AdministracionUniversitaria.Context;
+using AdministracionUniversitaria.Enums.Alumno;
 using AdministracionUniversitaria.Models;
 using AdministracionUniversitaria.ViewModels;
 using System;
@@ -22,187 +23,44 @@ namespace AdministracionUniversitaria.Controllers
             {
                 //seleccionar los alumnos de la base de datos
                 var alumnos = db.Alumnos_Set
-                    //seleccionar los datos de los alumnos y pintarlos en la vista
+                    //seleccionar los datos de los alumnos y pintarlos
+                    //en un viewmodel
                     .Select(a => new AlumnoViewModel.AlumnoInfo
                     {
                         Id = a.IdAlumno,
                         Nombre = a.Alumno_Nombre,
-                        Apellido = a.Alumno_Apellido,
-                        Edad = a.Alumno_Edad,
+                        Apellido_1 = a.Alumno_Apellido_1,
+                        Apellido_2 = a.Alumno_Apellido_2,
+                        NombreCompleto = a.Alumno_Nombre + " " + a.Alumno_Apellido_1 + " " + a.Alumno_Apellido_2,
+                        Sexo = a.Alumno_Sexo,
+                        Edad = DateTime.Now.Year - a.Alumno_FechaNacimiento.Year,
+                        FechaRegistro = a.Alumno_FechaRegistro,
                         FechaNacimiento = a.Alumno_FechaNacimiento,
-                        Direccion = a.Alumno_Direccion,
-                        Telefono = a.Alumno_Telefono,
+                        Telefono_1 = a.Alumno_Telefono_1,
+                        Telefono_2 = a.Alumno_Telefono_2,
                         Email = a.Alumno_Email,
-
+                        Foto = a.Alumno_Foto,
+                        Via = a.Alumno_Via,
+                        Calle = a.Alumno_Calle,
+                        Calle_2 = a.Alumno_Calle_2,
+                        Numero = a.Alumno_Numero,
+                        Escalera = a.Alumno_Escalera,
+                        Piso = a.Alumno_Piso,
+                        Puerta = a.Alumno_Puerta,
+                        ComunidadAutonoma = a.Alumno_ComunidadAutonoma,
+                        CodigoPostal = a.Alumno_CodigoPostal,
+                        DireccionCompleta = a.Alumno_Via + " " + a.Alumno_Calle + " " + a.Alumno_Calle_2 + " "+ " " + a.Alumno_Numero + " " + a.Alumno_CodigoPostal + " " + a.Alumno_ComunidadAutonoma
 
                     }).ToList();
 
-                //crear un objeto de la clase viewmodel
-                var vm = new AlumnoViewModel();
+                var vm = new AlumnoViewModel
                 {
-                    //llenar la lista de alumnos con los datos de la base de datos
-
-                    vm.Alumnos = alumnos.Select(a => new AlumnoViewModel.AlumnoInfo
-                    {
-                        Id = a.Id,
-                        Nombre = a.Nombre,
-                        Apellido = a.Apellido,
-                        Edad = a.Edad,
-                        FechaNacimiento = a.FechaNacimiento,
-                        Direccion = a.Direccion,
-                        Telefono = a.Telefono,
-                        Email = a.Email,
-
-                    }).ToList();
+                    Alumnos = alumnos
                 };
+
+
 
                 return View(vm);
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-        }
-
-        // GET: Alumno/CreateAlumno
-        //metodo para mostrar la vista de crear alumnos
-        [HttpGet]
-        public ActionResult CreateAlumno()
-        {
-      
-
-            return View();
-        }
-
-        //GET: Obtener un alumno por su id y mostrar datos
-        //metodo para obtener un alumno por su id
-        [HttpGet]
-        public ActionResult AlumnoDetail(int IdAlumno) {
-
-            System.Diagnostics.Debug.WriteLine("Id del alumno ------------------> " + IdAlumno);
-            //seleccionar el alumno por su id
-            var alumno = db.Alumnos_Set.Find(IdAlumno);
-
-            if (alumno != null)
-            {
-                try
-                {
-                    //crear un objeto de la clase viewmodel
-
-                    var vm = new AlumnoViewModel
-                    {
-                        //llenar los datos del alumno
-                        Alumno_Nombre = alumno.Alumno_Nombre,
-                        Alumno_Apellido = alumno.Alumno_Apellido,
-                        Alumno_Edad = alumno.Alumno_Edad,
-                        Alumno_FechaNacimiento = alumno.Alumno_FechaNacimiento,
-                        Alumno_Direccion = alumno.Alumno_Direccion,
-                        Alumno_Telefono = alumno.Alumno_Telefono,
-                        Alumno_Email = alumno.Alumno_Email,
-                        Alumno_Foto = alumno.Alumno_Foto
-                    };
-
-                    return View(vm);
-                }
-                catch (Exception)
-                {
-                    throw;
-
-                }
-            }
-            else
-            {
-                return RedirectToAction("AlumnosPage");
-            }
-        }
-
-        //POST: Crear un alumno en el sistema
-        //metodo para crear un alumno en el sistema
-        [HttpPost]
-        public ActionResult CreateAlumno(AlumnoViewModel model)
-        {
-            try
-            {
-                //crear un objeto de la clase alumno
-                var alumno = new Alumno
-                {
-                    //llenar los datos del alumno
-                    Alumno_Nombre = model.Alumno_Nombre,
-                    Alumno_Edad = model.Alumno_Edad,
-                    Alumno_Apellido = model.Alumno_Apellido,
-                    Alumno_FechaNacimiento = model.Alumno_FechaNacimiento,
-                    Alumno_Direccion = model.Alumno_Direccion,
-                    Alumno_Telefono = model.Alumno_Telefono,
-                    Alumno_Email = model.Alumno_Email,
-                    Alumno_Foto = model.Alumno_Foto
-                };
-
-                //agregar el alumno a la base de datos
-                db.Alumnos_Set.Add(alumno);
-                db.SaveChanges();
-
-                return RedirectToAction("AlumnosPage");
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-        }
-
-        //PUT: Actualizar un alumno en el sistema
-        //metodo para actualizar un alumno en el sistema
-        [HttpPost]
-        public ActionResult UpdateAlumno(AlumnoViewModel model, int IdAlumno)
-        {
-            System.Diagnostics.Debug.WriteLine("Id del alumno ------------------> " + IdAlumno);
-            //seleccionar el alumno por su id
-            var alumno = db.Alumnos_Set.Find(IdAlumno);
-
-            if (alumno != null)
-            {
-                try
-                {
-                    //actualizar los datos del alumno
-                    alumno.Alumno_Nombre = model.Alumno_Nombre;
-                    alumno.Alumno_Apellido = model.Alumno_Apellido;
-                    alumno.Alumno_Edad = model.Alumno_Edad;
-                    //alumno.Alumno_FechaNacimiento = model.Alumno_FechaNacimiento; //todo: verificar fecha nacimiento da eror al actualizar
-                    alumno.Alumno_Direccion = model.Alumno_Direccion;
-                    alumno.Alumno_Telefono = model.Alumno_Telefono;
-                    alumno.Alumno_Email = model.Alumno_Email;
-                    //alumno.Alumno_Foto = model.Alumno_Foto;
-
-                    //guardar los cambios en la base de datos
-                    db.SaveChanges();
-                }
-                catch (Exception)
-                {
-
-                    throw;
-                }
-            }
-
-            return RedirectToAction("AlumnosPage");
-        }
-
-        //DELETE: Eliminar un alumno del sistema
-        //metodo para eliminar un alumno del sistema
-        [HttpPost]
-        public ActionResult DeleteAlumno(int IdAlumno)
-        {
-            System.Diagnostics.Debug.WriteLine("Id del alumno ------------------> " + IdAlumno);
-            try
-            {
-                //seleccionar el alumno por su id
-                var alumno = db.Alumnos_Set.Find(IdAlumno);
-
-                //eliminar el alumno de la base de datos
-                db.Alumnos_Set.Remove(alumno);
-                db.SaveChanges();
-
-                return RedirectToAction("AlumnosPage");
             }
             catch (Exception)
             {
